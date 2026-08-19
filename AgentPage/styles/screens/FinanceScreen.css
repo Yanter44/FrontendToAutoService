@@ -1,0 +1,255 @@
+.AvailableBalance, 
+.DebtLimit,
+.CurrentDebt {
+    display: flex;
+    background: #FFFFFF;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    width: 100%;
+    max-width: 280px; 
+    padding: 16px; 
+    min-height: 90px; 
+    box-sizing: border-box; 
+}
+.FinanceAvalibleBalanceSvgHolder{
+    padding: 10px;
+    background: #E9FFEC;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.FinanceAvalibleBalanceSvgHolder svg{
+    width: 40px;
+}
+.FinanceDebtLimitSvgHolder {
+    padding: 10px;
+    background: #F2F2F2;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.FinanceDebtLimitSvgHolder svg{
+    width: 40px;
+}
+
+.FinanceCurrentDebtSvgHolder{
+    padding: 10px;
+    background-color: #FFBABB;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.FinanceCurrentDebtSvgHolder svg{
+    width: 40px;
+}
+.FinanceBalanceInfo{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    flex-direction: column;
+}
+.FinanceStatus {
+    display: flex;
+    gap: 16px; 
+    margin-top: 20px;
+    margin-left: 20px;
+    flex-wrap: wrap;
+}
+
+
+.FinanceTableBorder {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    box-sizing: border-box;
+    font-family: 'Manrope', sans-serif;
+}
+.FinanceTableHeader{
+    display: flex;
+    padding: 5px;
+    color: #5A4BFF;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.FinanceFilters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.FinanceFilterDatePicker,
+.FinanceFilterSelectWrapper {
+    position: relative;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+}
+
+.FinanceFilterDatePicker input {
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #1E293B;
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+}
+
+.FinanceFilterIcon {
+    padding-right: 12px;
+    cursor: pointer;
+}
+
+.FinanceFilterSelect {
+    border: none;
+    padding: 8px 32px 8px 12px;
+    font-size: 14px;
+    color: #1E293B;
+    background: transparent;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.FinanceFilterSelectWrapper::after {
+    content: "▼";
+    font-size: 10px;
+    color: #64748B;
+    position: absolute;
+    right: 12px;
+    pointer-events: none;
+}
+
+.FinanceHistoryTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+}
+
+.FinanceHistoryTable thead tr {
+    background: #F8FAFC;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.FinanceHistoryTable th {
+    padding: 14px 16px;
+    font-weight: 500;
+    color: #94A3B8;
+}
+
+.FinanceHistoryTable tbody tr {
+    border-bottom: 1px solid #F1F5F9;
+    transition: background 0.2s ease;
+}
+
+.FinanceHistoryTable tbody tr:hover {
+    background: #F8FAFC;
+}
+
+.FinanceHistoryTable td {
+    padding: 16px;
+    vertical-align: middle;
+}
+
+.FinanceDateTimeCell {
+    color: #1E293B;
+    font-weight: 500;
+}
+
+.FinanceDescriptionCell {
+    color: #64748B;
+}
+
+.FinanceTypeWrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.FinanceTypeWrapper svg {
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    border-radius: 6px;
+}
+
+.FinanceTypeDeposit {
+    color: #1E293B;
+}
+.FinanceTypeDeposit svg {
+    background: #E9FFEC;
+    color: #22C55E;
+    transform: rotate(180deg); 
+}
+
+.FinanceTypeWithdrawal {
+    color: #1E293B;
+}
+.FinanceTypeWithdrawal svg {
+    background: #FEE2E2;
+    color: #EF4444;
+    transform: rotate(180deg);
+}
+
+.FinanceAmountCell {
+    font-weight: 600;
+}
+
+.FinanceAmountDeposit {
+    color: #22C55E;
+}
+
+.FinanceAmountWithDrawal {
+    color: #EF4444;
+}
+
+.FinanceStatusBadge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.FinanceStatusSuccess {
+    background: #E9FFEC;
+    color: #22C55E;
+}
+
+.FinanceStatusPending {
+    background: #EFF6FF;
+    color: #3B82F6;
+}
+
+@media (max-width: 1024px) {
+    .AvailableBalance,
+    .DebtLimit,
+    .CurrentDebt {
+        max-width: none;
+    }
+
+    .FinanceStatus,
+    .FinanceTableBorder {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .FinanceHistoryTable {
+        min-width: 720px;
+    }
+
+    .FinanceTableBorder {
+        overflow-x: auto;
+        padding: 14px;
+    }
+}

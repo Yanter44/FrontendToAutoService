@@ -1,0 +1,167 @@
+.ApplicationsTable {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.ApplicationsTable th {
+    background: #f8fafc;
+    text-align: left;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: #64748b;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.ApplicationsTable td {
+    padding: 18px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.ApplicationHeaderSection{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.ApplicationsSortSection {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.ApplicationsSortSelect {
+    position:relative;
+    width:240px;
+}
+
+.ApplicationsSortSelect select {
+    width:100%;
+    height: 48px;
+    padding:0 48px 0 18px;
+    border:1px solid #e8edf5;
+    border-radius:16px;
+    background:#fff;
+    font-size:15px;
+    font-weight:500;
+    color:#1f2937;
+    cursor:pointer;
+    outline:none;
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    box-shadow: 0 6px 20px rgba(15,23,42,.05);
+    transition:
+        border-color .25s,
+        box-shadow .25s,
+        transform .15s;
+}
+
+.ApplicationsSortSelect select:hover{
+    border-color:#d5deeb;
+}
+
+.ApplicationsSortSelect select:focus{
+    border-color:#4F7CFF;
+    box-shadow:
+        0 0 0 4px rgba(79,124,255,.12),
+        0 10px 25px rgba(79,124,255,.12);
+}
+.ApplicationsSortSelect:hover .SelectArrow{
+    color:#4F7CFF;
+}
+
+.ApplicationsSortSelect:focus-within .SelectArrow{
+    color:#4F7CFF;
+}
+.ApplicationsSearchSort{
+    width: 380px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 18px;
+    background: #fff;
+    border: 1px solid #e8edf5;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, .05);
+    transition: .25s;
+}
+
+.ApplicationsSearchSort:hover{
+    border-color:#cfd8e6;
+}
+
+.ApplicationsSearchSort:focus-within{
+    border-color:#4F7CFF;
+    box-shadow:
+        0 0 0 4px rgba(79,124,255,.12),
+        0 10px 25px rgba(79,124,255,.12);
+}
+
+.ApplicationsSearchSort svg{
+    width:20px;
+    height:20px;
+    fill:#9ca3af;
+    flex-shrink:0;
+}
+
+.ApplicationsSearchSort input{
+    flex:1;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    font-size:15px;
+    color:#1f2937;
+}
+
+.ApplicationsSearchSort input::placeholder{
+    color:#9ca3af;
+}
+
+.BtnAddNewApplication {
+    border: none;
+    background: #1a53ff;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.BtnAddNewApplication:hover {
+    background: #003fe0;
+}
+
+@media (max-width: 1024px) {
+    .ApplicationHeaderSection,
+    .ApplicationsSortSection {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .ApplicationsSearchSort,
+    .ApplicationsSortSelect,
+    .BtnAddNewApplication {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .ApplicationsTable {
+        min-width: 760px;
+    }
+}
+.ApplicationsMetricTotal .ApplicationsMetricIcon{
+    padding: 10px;
+    border-radius: 10px;
+    background: #EAF1FE;
+}

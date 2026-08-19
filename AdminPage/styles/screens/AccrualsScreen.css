@@ -1,0 +1,191 @@
+.AccrualsTable{
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    border-radius: 14px;
+    overflow: hidden;
+}
+.AccrualsTable th {
+    background: #f8fafc;
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: #64748b;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.AccrualsTable td {
+    padding: 18px 20px;
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.TransactionAmountCredit {
+    color: #16a34a;
+    font-weight: 600;
+}
+
+.TransactionAmountDebit {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+.BtnAccrualToBalance{
+    border: none;
+    background: #1a53ff;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.2s;
+}
+.BtnAccrualToBalance:hover{
+    background: #003fe0;
+}
+.BtnDeductFromBalance{
+    border: none;
+    background: #000000db;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.2s;
+}
+.BtnDeductFromBalance:hover{
+    background: #1f1f1fdb;
+}
+.AccrualsSearchSort{
+    width: 380px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 18px;
+    background: #fff;
+    border: 1px solid #e8edf5;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, .05);
+    transition: .25s;
+}
+
+.AccrualsSearchSort:hover{
+    border-color:#cfd8e6;
+}
+
+.AccrualsSearchSort:focus-within{
+    border-color:#4F7CFF;
+    box-shadow:
+    0 0 0 4px rgba(79,124,255,.12),
+    0 10px 25px rgba(79,124,255,.12);
+}
+
+.AccrualsSearchSort svg{
+    width:20px;
+    height:20px;
+    fill:#9ca3af;
+    flex-shrink:0;
+}
+
+.AccrualsSearchSort input{
+    flex:1;
+    
+    border:none;
+    outline:none;
+    
+    background:transparent;
+    
+    font-size:15px;
+    color:#1f2937;
+}
+
+.AccrualsSortSelect:hover .SelectArrow{
+    color:#4F7CFF;
+}
+
+.AccrualsSortSelect:focus-within .SelectArrow{
+    color:#4F7CFF;
+}
+
+.AccrualsSearchSort input::placeholder{
+    color:#9ca3af;
+}
+
+.AccrualsSortSelect {
+    position:relative;
+    width:240px;
+}
+.AccrualsSortSection {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.AccrualsSortSelect select {
+    width:100%;
+    height: 48px;
+    padding:0 48px 0 18px;
+    border:1px solid #e8edf5;
+    border-radius:16px;
+    background:#fff;
+    font-size:15px;
+    font-weight:500;
+    color:#1f2937;
+    cursor:pointer;
+    outline:none;
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    box-shadow: 0 6px 20px rgba(15,23,42,.05);
+    transition:
+        border-color .25s,
+        box-shadow .25s,
+        transform .15s;
+}
+
+.AccrualsSortSelect select:hover{
+    border-color:#d5deeb;
+}
+
+.AccrualsSortSelect select:focus{
+    border-color:#4F7CFF;
+    box-shadow:
+        0 0 0 4px rgba(79,124,255,.12),
+        0 10px 25px rgba(79,124,255,.12);
+}
+.AccrualHeaderSection{
+    display: flex;
+    gap:10px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.AccrualHeaderButtons{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 1024px) {
+    .AccrualHeaderSection,
+    .AccrualsSortSection,
+    .AccrualHeaderButtons {
+        flex-wrap: wrap;
+    }
+
+    .AccrualsSearchSort,
+    .AccrualsSortSelect,
+    .BtnAccrualToBalance,
+    .BtnDeductFromBalance {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .AccrualsTable {
+        min-width: 720px;
+    }
+}
