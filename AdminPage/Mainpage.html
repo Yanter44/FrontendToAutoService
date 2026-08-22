@@ -69,11 +69,6 @@
     <div id="AppContent">
         <div class="AgentPage">
             <aside class="Sidebar">
-                <button class="SidebarToggle" id="sidebarToggle" aria-label="Свернуть/развернуть меню">
-                    <svg class="ToggleIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 18L9 12L15 6" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </button>
                 <div class="LogoContainer">
                     <img src="../Assets/Images/car.png" class="LogoImage">
                     <span class="LogoText">ТО-АГЕНТ</span>
@@ -141,7 +136,7 @@
                 <div class="Workspace">
                     <div class="ContentArea">
 
-                        <div id="ApplicationsScreen" data-screen="applications">
+                        <div class="ApplciationsScreen" id="ApplicationsScreen" data-screen="applications">
                             <section class="TableSection">
                                 <div class="ApplicationsSortSection">
                                     <div class="ApplicationsSearchSort">
@@ -236,7 +231,7 @@
                             </section>
                         </div>
 
-                        <div id="UsersScreen" data-screen="users">
+                        <div class="UsersScreen" id="UsersScreen" data-screen="users">
                             <section class="TableSection">
                                 <div class="UsersSortSection">
                                     <div class="UsersSearchSort">
@@ -274,7 +269,7 @@
                             </section>
                         </div>
 
-                        <div id="PtosScreen" data-screen="ptos">
+                        <div class="PtosScreen" id="PtosScreen" data-screen="ptos">
                             <section class="TableSection">
                                 <div class="PtoHeaderSection">
                                     <div class="PtosSortSection">
@@ -314,7 +309,7 @@
                             </section>
                         </div>
 
-                        <div id="LibraryOfPromptsScreen" data-screen="prompts">
+                        <div class="LibraryOfPromptsScreen" id="LibraryOfPromptsScreen" data-screen="prompts">
                             <section class="TableSection">
                                 <div class="PromptHeaderSection">
                                     <div class="PromptsSortSection">
@@ -334,25 +329,27 @@
                                     <button class="BtnAddNewPrompt">+ Новый промпт</button>
                                 </div>
 
-                                <table class="PromptTable">
-                                    <thead>
-                                        <tr>
-                                            <th>№ промпта</th>
-                                            <th>Тег</th>
-                                            <th>Описание</th>
-                                            <th>Действие</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <tr class="PromptTableRow">
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                    <table class="PromptTable">
+                                        <thead>
+                                            <tr>
+                                                <th>№ промпта</th>
+                                                <th>Тег</th>
+                                                <th>Описание</th>
+                                                <th>Действие</th>
+                                            </tr>
+                                        </thead>
+                                
+                                        <tbody>
+                                            <tr class="PromptTableRow">
+                                            </tr>
+                                        </tbody>
+                                    </table>
+              
+                                
                             </section>
                         </div>
 
-                        <div id="RequirementsToPhotoAndDocuments" data-screen="requirements">
+                        <div class="RequirementsToPhotoAndDocumentsScreen" id="RequirementsToPhotoAndDocuments" data-screen="requirements">
                             <div class="RequirementsGrid">
                                 <div class="RequirementsCard">
                                     <div class="RequirementsCardHeader">
@@ -404,7 +401,7 @@
                             </div>
                         </div>
 
-                        <div id="AccrualsScreen" data-screen="accruals">
+                        <div class="AccrualsScreen" id="AccrualsScreen" data-screen="accruals">
                             <section class="TableSection">
                                 <div class="AccrualHeaderSection">
                                     <div class="AccrualsSortSection">

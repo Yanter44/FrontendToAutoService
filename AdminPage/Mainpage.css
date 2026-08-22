@@ -309,7 +309,13 @@ body {
 
 
 .TableSection {
+    flex: 1;
+    overflow-y: auto;    /* ✅ ВЕРТИКАЛЬНАЯ ПРОКРУТКА */
+    overflow-x: auto;    /* ✅ ГОРИЗОНТАЛЬНАЯ ПРОКРУТКА */
+    -webkit-overflow-scrolling: touch;
     padding: 24px;
+    display: flex;
+    flex-direction: column;
 }
 
 .TableTop {

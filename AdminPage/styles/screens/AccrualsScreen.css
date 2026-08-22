@@ -1,3 +1,33 @@
+.AccrualsScreen{
+    height: 100%;
+    overflow-y: auto;
+    min-height: 0;
+}
+.AccrualsScreen::-webkit-scrollbar {
+    width: 4px;            
+}
+
+.AccrualsScreen::-webkit-scrollbar-track {
+    background: transparent;       
+}
+
+.AccrualsScreen::-webkit-scrollbar-thumb {
+    background: #b8d4e3;        
+    border-radius: 20px;           
+    transition: all 0.3s ease;
+}
+
+.AccrualsScreen::-webkit-scrollbar-thumb:hover {
+    background: #7eb8d4;         
+}
+
+.AccrualsScreen::-webkit-scrollbar-thumb:active {
+    background: #5ba3c4;        
+}
+
+.AccrualsScreen::-webkit-scrollbar-corner {
+    background: transparent;
+}
 .AccrualsTable{
     width: 100%;
     background: white;
@@ -171,21 +201,121 @@
 }
 
 @media (max-width: 1024px) {
-    .AccrualHeaderSection,
-    .AccrualsSortSection,
-    .AccrualHeaderButtons {
+    .AccrualsSortSection {
         flex-wrap: wrap;
     }
 
     .AccrualsSearchSort,
-    .AccrualsSortSelect,
-    .BtnAccrualToBalance,
-    .BtnDeductFromBalance {
+    .AccrualsSortSelect {
         width: 100%;
         max-width: 100%;
     }
 
     .AccrualsTable {
-        min-width: 720px;
+        table-layout: fixed;
+        width: 100%;
     }
+    .AccrualsTable thead {
+        display: none;
+    }
+
+    .AccrualsTable tbody tr {
+        display: block;
+        background: white;
+        border-radius: 16px;
+        padding: 16px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e8edf5;
+        transition: all 0.2s ease;
+    }
+
+    .AccrualsTable tbody tr:active {
+        transform: scale(0.98);
+    }
+
+    .AccrualsTable tbody td {
+        display: block;
+        align-items: center;
+        padding: 8px 0;
+        margin-left: 20px;
+        border: none;
+        border-bottom: 1px solid #f1f5f9;
+        text-align: left;
+        word-break: break-word;
+    }
+
+    .AccrualsTable tbody td:last-child {
+        border-bottom: none;
+        padding-top: 12px;
+        justify-content: flex-start;
+    }
+
+    .AccrualsTable tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #64748b;
+        font-size: 12px;
+        min-width: 80px;
+        flex-shrink: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .AccrualsTable tbody td {
+        background: transparent !important;
+    }
+
+    .AccrualsTable tbody td:last-child {
+        gap: 8px;
+    }
+
+    .AccrualsTable tbody td:last-child .BtnRedactPrompt,
+    .AccrualsTable tbody td:last-child .BtnDeletePrompt {
+        width: 40px;
+        height: 36px;
+    }
+
+    .AccrualsTable {
+        background: transparent;
+        border-radius: 0;
+        overflow: visible;
+    }
+
+    .AccrualsSortSection {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+     
+    .AccrualHeaderSection {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 16px;
+        align-items: center;
+    }
+
+    .AccrualsSearchSort {
+        width: 100%;
+        max-width: 100%;
+        height: 44px;
+    }
+
+    .AccrualsSortSelect {
+        width: 100%;
+    }
+
+    .AccrualsSortSelect select {
+        height: 44px;
+    }
+
+    .TableSection {
+        padding: 12px;
+    }
+
+    .AccrualsScreen {
+        padding: 0;
+    }
+
 }

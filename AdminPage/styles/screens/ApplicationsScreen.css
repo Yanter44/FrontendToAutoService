@@ -1,3 +1,33 @@
+.ApplciationsScreen::-webkit-scrollbar {
+    width: 4px;            
+}
+
+.ApplciationsScreen::-webkit-scrollbar-track {
+    background: transparent;       
+}
+
+.ApplciationsScreen::-webkit-scrollbar-thumb {
+    background: #b8d4e3;        
+    border-radius: 20px;           
+    transition: all 0.3s ease;
+}
+
+.ApplciationsScreen::-webkit-scrollbar-thumb:hover {
+    background: #7eb8d4;         
+}
+
+.ApplciationsScreen::-webkit-scrollbar-thumb:active {
+    background: #5ba3c4;        
+}
+
+.ApplciationsScreen::-webkit-scrollbar-corner {
+    background: transparent;
+}
+.ApplciationsScreen{
+    height: 100%;
+    overflow-y: auto;
+    min-height: 0;
+}
 .ApplicationsTable {
     width: 100%;
     margin-top: 10px;
@@ -310,7 +340,10 @@
     .ApplicationsSortSection {
         flex-wrap: wrap;
     }
-
+    .ApplicationsMetric{
+        min-width: 65px;
+        font-size: 14px;
+    }
     .ApplicationsSearchSort,
     .ApplicationsSortSelect {
         width: 100%;
@@ -322,13 +355,112 @@
     }
 
     .ApplicationsTable {
-        min-width: 760px;
-        table-layout: auto;
+        table-layout: fixed;
+        width: 100%;
+    }
+    .ApplicationsTable thead {
+        display: none;
+    }
+
+    .ApplicationsTable tbody tr {
+        display: block;
+        background: white;
+        border-radius: 16px;
+        padding: 16px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e8edf5;
+        transition: all 0.2s ease;
+    }
+
+    .ApplicationsTable tbody tr:active {
+        transform: scale(0.98);
+    }
+
+    .ApplicationsTable tbody td {
+        display: block;
+        align-items: center;
+        padding: 8px 0;
+        margin-left: 20px;
+        border: none;
+        border-bottom: 1px solid #f1f5f9;
+        text-align: left;
+        word-break: break-word;
+    }
+
+    .ApplicationsTable tbody td:last-child {
+        border-bottom: none;
+        padding-top: 12px;
+        justify-content: flex-start;
+    }
+
+    .ApplicationsTable tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #64748b;
+        font-size: 12px;
+        min-width: 80px;
+        flex-shrink: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .ApplicationsTable tbody td {
+        background: transparent !important;
+    }
+
+    .ApplicationsTable tbody td:last-child {
+        gap: 8px;
+    }
+
+    .ApplicationsTable tbody td:last-child .BtnRedactPrompt,
+    .ApplicationsTable tbody td:last-child .BtnDeletePrompt {
+        width: 40px;
+        height: 36px;
+    }
+
+    .ApplicationsTable {
+        background: transparent;
+        border-radius: 0;
+        overflow: visible;
+    }
+
+    .ApplicationsSortSection {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .ApplicationsSearchSort {
+        width: 100%;
+        max-width: 100%;
+        height: 44px;
+    }
+
+    .ApplicationsSortSelect {
+        width: 100%;
+    }
+
+    .ApplicationsSortSelect select {
+        height: 44px;
+    }
+
+    .TableSection {
+        padding: 12px;
+    }
+
+    .ApplciationsScreen {
+        padding: 0;
+    }
+    .ApplicationsPagination{
+        justify-content: center;
     }
 }
 
 @media (max-width: 640px) {
     .ApplicationsMetrics {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
+

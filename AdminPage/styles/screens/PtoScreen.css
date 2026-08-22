@@ -1,3 +1,32 @@
+.PtosScreen{
+    height: 100%;
+    overflow-y: auto;
+    min-height: 0;
+}
+.PtosScreen::-webkit-scrollbar {
+    width: 4px;            
+}
+.PtosScreen::-webkit-scrollbar-track {
+    background: transparent;       
+}
+
+.PtosScreen::-webkit-scrollbar-thumb {
+    background: #b8d4e3;        
+    border-radius: 20px;           
+    transition: all 0.3s ease;
+}
+
+.PtosScreen::-webkit-scrollbar-thumb:hover {
+    background: #7eb8d4;         
+}
+
+.PtosScreen::-webkit-scrollbar-thumb:active {
+    background: #5ba3c4;        
+}
+
+.PtosScreen::-webkit-scrollbar-corner {
+    background: transparent;
+}
 .PtoTable {
     width: 100%;
     background: white;
@@ -186,21 +215,107 @@
 }
 
 @media (max-width: 1024px) {
-    .PtoHeaderSection,
-    .PtosSortSection {
-        flex-wrap: wrap;
-        gap: 10px;
+    .PtoTable thead {
+        display: none;
     }
 
-    .PtosSearchSort,
-    .PtosSortSelect,
-    .BtnAddNewPto {
-        width: 100%;
-        max-width: 100%;
+    .PtoTable tbody tr {
+        display: block;
+        background: white;
+        border-radius: 16px;
+        padding: 16px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e8edf5;
+        transition: all 0.2s ease;
+    }
+
+    .PtoTable tbody tr:active {
+        transform: scale(0.98);
+    }
+
+    .PtoHeaderSection {
+        flex-direction: column;
+        gap: 12px;
+        display: flex;
+        margin-bottom: 16px;
+        align-items: center;
+    }
+    
+    .PtoTable tbody td {
+        display: block;
+        align-items: center;
+        padding: 8px 0;
+        margin-left: 20px;
+        border: none;
+        border-bottom: 1px solid #f1f5f9;
+        text-align: left;
+        word-break: break-word;
+    }
+
+    .PtoTable tbody td:last-child {
+        border-bottom: none;
+        padding-top: 12px;
+        justify-content: flex-start;
+    }
+
+    .PtoTable tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #64748b;
+        font-size: 12px;
+        min-width: 80px;
+        flex-shrink: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .PtoTable tbody td {
+        background: transparent !important;
+    }
+
+    .PtoTable tbody td:last-child {
+        gap: 8px;
+    }
+
+    .PtoTable tbody td:last-child .BtnRedactPrompt,
+    .PtoTable tbody td:last-child .BtnDeletePrompt {
+        width: 40px;
+        height: 36px;
     }
 
     .PtoTable {
-        min-width: 760px;
-        table-layout: auto;
+        background: transparent;
+        border-radius: 0;
+        overflow: visible;
+    }
+
+
+    .PtosSortSection {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .PtosSearchSort {
+        width: 100%;
+        max-width: 100%;
+        height: 44px;
+    }
+
+    .PtosSortSelect {
+        width: 100%;
+    }
+
+    .PtosSortSelect select {
+        height: 44px;
+    }
+
+    .TableSection {
+        padding: 12px;
+    }
+
+    .PtosScreen {
+        padding: 0;
     }
 }

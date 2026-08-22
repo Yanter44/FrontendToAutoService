@@ -1,3 +1,34 @@
+.UsersScreen{
+    height: 100%;
+    overflow-y: auto;
+    min-height: 0;
+}
+.UsersScreen::-webkit-scrollbar {
+    width: 4px;            
+}
+
+.UsersScreen::-webkit-scrollbar-track {
+    background: transparent;       
+}
+
+.UsersScreen::-webkit-scrollbar-thumb {
+    background: #b8d4e3;        
+    border-radius: 20px;           
+    transition: all 0.3s ease;
+}
+
+.UsersScreen::-webkit-scrollbar-thumb:hover {
+    background: #7eb8d4;         
+}
+
+.UsersScreen::-webkit-scrollbar-thumb:active {
+    background: #5ba3c4;        
+}
+
+.UsersScreen::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
 .UsersTable {
     width: 100%;
     background: white;
@@ -49,25 +80,7 @@
     color: #7c1890;
 }
 
-@media (max-width: 1024px) {
-    .UsersSortSection,
-    .UsersSearchSort,
-    .UsersSortSelect {
-        width: 100%;
-        max-width: 100%;
-    }
 
-    .UsersSortSection {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .UsersTable {
-        min-width: 760px;
-        table-layout: auto;
-    }
-}
 .UsersSortSelect:hover .SelectArrow{
     color:#4F7CFF;
 }
@@ -189,4 +202,102 @@
 .BtnDeleteUser:hover {
     background-color: #fef2f2; 
     border-color: #ef4444;  
+}
+
+@media (max-width: 1024px) {
+    .UsersTable thead {
+        display: none;
+    }
+
+    .UsersTable tbody tr {
+        display: block;
+        background: white;
+        border-radius: 16px;
+        padding: 16px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e8edf5;
+        transition: all 0.2s ease;
+    }
+
+    .UsersTable tbody tr:active {
+        transform: scale(0.98);
+    }
+
+    .UsersTable tbody td {
+        display: block;
+        align-items: center;
+        padding: 8px 0;
+        margin-left: 20px;
+        border: none;
+        border-bottom: 1px solid #f1f5f9;
+        text-align: left;
+        word-break: break-word;
+    }
+
+    .UsersTable tbody td:last-child {
+        border-bottom: none;
+        padding-top: 12px;
+        justify-content: flex-start;
+    }
+
+    .UsersTable tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #64748b;
+        font-size: 12px;
+        min-width: 80px;
+        flex-shrink: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .UsersTable tbody td {
+        background: transparent !important;
+    }
+
+    .UsersTable tbody td:last-child {
+        gap: 8px;
+    }
+
+    .UsersTable tbody td:last-child .BtnRedactPrompt,
+    .UsersTable tbody td:last-child .BtnDeletePrompt {
+        width: 40px;
+        height: 36px;
+    }
+
+    .UsersTable {
+        background: transparent;
+        border-radius: 0;
+        overflow: visible;
+    }
+
+
+    .UsersSortSection {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .UsersSearchSort {
+        width: 100%;
+        max-width: 100%;
+        height: 44px;
+    }
+
+    .UsersSortSelect {
+        width: 100%;
+    }
+
+    .UsersSortSelect select {
+        height: 44px;
+    }
+
+    .TableSection {
+        padding: 12px;
+    }
+
+    .UsersScreen {
+        padding: 0;
+    }
 }
