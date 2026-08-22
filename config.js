@@ -1,5 +1,5 @@
 
 var config = {
-    API_BASE: "http://localhost:5017",
+    API_BASE: "/api",
     DefaultStartFileLocation: ".."
 };
