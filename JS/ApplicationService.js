@@ -1,8 +1,7 @@
 window.applicationService = {
-    async getAllApplications(page,pageSize) {
+    async getApplications(page,pageSize) {
         try {
-            console.log('начали запрос');
-            const response = await customFetch(`${config.API_BASE}/Application/GetAllApplications?page=${page}&pageSize=${pageSize}`, {
+            const response = await customFetch(`${config.API_BASE}/Application/GetApplications?page=${page}&pageSize=${pageSize}`, {
                 method: "GET",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" }
@@ -11,6 +10,22 @@ window.applicationService = {
             return result;
         }
         catch (error) {
+            console.error(error);
+        }
+    },
+    async getApplicationsMetrics(){
+        try {
+            const response = await customFetch(`${config.API_BASE}/Application/GetApplicationsMetrics`, {
+                method: "GET",
+                credentials: "include",
+                headers: { "Content-Type": "application/json" }
+            });
+            const result = await response.json();
+            if(result.success === true){
+                return result.data;
+            }
+        }
+        catch(error){
             console.error(error);
         }
     },

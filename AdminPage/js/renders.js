@@ -148,11 +148,7 @@ const bindApplicationsPaginationEvents = () => {
         const page = Number(button.dataset.page);
         if (!page) return;
 
-        const result = await applicationService.getAllApplications(
-            page,
-            state.applicationsResult.pageSize
-        );
-
+        const result = await applicationService.getApplications(page,state.applicationsResult.pageSize);
         state.applicationsResult = result;
         renderApplicationsTable(state.applicationsResult.items);
         renderApplicationsPagination(state.applicationsResult.page,state.applicationsResult.totalPages);
@@ -399,7 +395,7 @@ const renderAgentsToSelect = (agents, selectElement, onChange) => {
         const option = document.createElement('option');
 
         option.value = agent.id;
-        option.textContent = agent.name;
+        option.textContent = agent.fio;
 
         selectElement.appendChild(option);
     });
@@ -438,6 +434,9 @@ const updateDeductSelectedAgentBalance = () => {
     ui.DeductModalCurrentAgentBalanceValue.textContent = `${agent.balance.toLocaleString('ru-RU')} ₽`;
 };
 
+const renderNotification = (html) => {
+    ui.NotificationModalBody.insertAdjacentHTML("afterbegin", html);
+};
 
 const renderPtosTable = (ptos) => {
     const tbody = ui.PtoMainTableBody;
@@ -606,9 +605,7 @@ const renderNotificationCountField = (notificationsTotalCount) => {
         ui.NotificationCountField.textContent = notificationsTotalCount;
     }
 };
-
 const renderLoaderProgress = (percent) => {
-    console.log(percent);
     ui.LoaderProgressBarProgressFill.style.width = `${percent}%`;
     ui.LoaderLoadingProgressBarPercents.innerHTML = `${percent}%`;
 };
@@ -674,6 +671,29 @@ const renderTransactionsTable = (transactions) => {
 
         ui.AccrualsTableBody.appendChild(row);
     });
+};
+
+const renderApplicationsMetrics = (applicationsMetrics) => {
+    const container = document.querySelector('.ApplicationsMetrics');
+    if (!container) {
+        console.warn('Контейнер .ApplicationsMetrics не найден');
+        return;
+    }
+
+    const configs = metricsConfig.getConfig(applicationsMetrics);
+
+    const html = configs.map(metric => `
+        <div class="ApplicationsMetric ${metric.className}">
+            <div class="ApplicationsMetricIcon">
+                ${metric.svg}
+            </div>
+            <div class="ApplicationsMetricContent">
+                <span class="ApplicationsMetricTitle">${metric.title}</span>
+                <strong class="ApplicationsMetricValue">${metric.value}</strong>
+            </div>
+        </div>
+    `).join('');
+    container.innerHTML = html;
 };
 
 const renderCurrentRoleInRedactUserModal = (normalrolename) => {

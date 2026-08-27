@@ -161,6 +161,7 @@ body {
     .LoginCard, .RegisterCard, .CodeCard, .NameCard {
         padding: 28px 20px;
         border-radius: 20px;
+        margin-top: 15%;
     }
 
     .CodeInput {

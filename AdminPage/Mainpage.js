@@ -1,4 +1,4 @@
-const initApp = () => {
+const initApp = async () => {
     loader.show();
     try {
         initLeftMenuSidebar();
@@ -26,8 +26,10 @@ const initApp = () => {
         initDropdownResize();
         loader.next();
         initNotifications();
-        loader.next();
+        loader.next(); 
         initNotificationDropDown();
+        await signalRClient.start();
+        notificationHub.init();
         loader.next();
     }
     catch (error) {

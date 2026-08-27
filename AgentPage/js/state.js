@@ -1,8 +1,10 @@
 window.state = {
-    balance: null,
-    debtlimit: null,
-    currentdebt: null,
-    
+    finances: {
+        balance: null,
+        debtlimit: null,
+        currentdebt: null,
+    },
+
     unreadNotificationsCount: 0,
     
     uploadedPhotosStorage: [],
@@ -13,7 +15,13 @@ window.state = {
 
     vehicleCategories: [],
     ptos: [], 
-    applications: [],
+    applicationsResult: {
+        items: [],
+        page: 1,
+        pageSize: 5,
+        totalCount: 0,
+        totalPages: 0
+    },
 
     documentrequirements: [],
     photorequirements: [],

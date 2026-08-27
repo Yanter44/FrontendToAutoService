@@ -1,8 +1,10 @@
 window.state = {
+    page:  1,
+    pageSize: 5,
+
     notifications: [],
     uploadedFiles: [],
     MAX_PHOTOS: 8,
-    
     ptos: [],
     prompts: [],
     users: [],
@@ -15,8 +17,14 @@ window.state = {
         totalCount: 0,
         totalPages: 0
     },
+    applicationsMetrics: {
+        totalApplicationsCount: null,
+        totalApplicationsInModerationCount: null,
+        totalApplicationsApprovedCount: null,
+        totalApplicationsTodayCount: null
+    },
     
-     redactUser: {
+    redactUser: {
         userId: null,
         activeTab: null
     },

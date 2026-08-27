@@ -82,10 +82,27 @@ const initNotificationDropDown = () => {
     }
 };
 
-const initNotifications = async () =>{
-    const notifications = await notificationService.getNotifications(1,10);
+const initNotifications = async () => {
+    const notifications = await notificationService.getNotifications(1, 10);
     console.log(`Нотификации: ${notifications}`);
-    renderNotificationCountField(notifications.length);
+    const sortedNotifications = [...notifications].sort((a, b) => {
+        const dateA = new Date(a.createdAt).getTime();
+        const dateB = new Date(b.createdAt).getTime();
+        return dateA - dateB; 
+    });
+
+    console.log(`Загружено уведомлений: ${sortedNotifications.length}`);
+    renderNotificationCountField(sortedNotifications.length);
+    sortedNotifications.forEach(notification => {
+        const template = NotificationTemplates[notification.notificationType];
+
+        if (!template) {
+            console.warn(`Не найден шаблон для уведомления: ${notification.notificationType}`);
+            return;
+        }
+        const htmlresult = template(notification);
+        renderNotification(htmlresult);
+    });
 };
 
 const initApplicationSidebarTabs = () => {
@@ -156,15 +173,28 @@ const initNavigation = () => {
             switch (targetScreenName) {
                 case 'applications':
                     if (state.applicationsResult.items.length === 0) {
-                        const page = 1;
-                        const pageSize = 5;
-                        const result = await applicationService.getAllApplications(page, pageSize);
+                        console.log(state.page);
+                        console.log(state.pageSize);
+                        const result = await applicationService.getApplications(state.page, state.pageSize);
                         state.applicationsResult = result;
                         console.log(result);
                     }
+                    if (Object.values(state.applicationsMetrics ?? {}).every(v => v == null)) {
+                        const result = await applicationService.getApplicationsMetrics();
+                        state.applicationsMetrics = {
+                            totalApplicationsCount: result.totalApplicationsCount ?? 0,
+                            totalApplicationsInModerationCount: result.totalApplicationsInModerationCount ?? 0,
+                            totalApplicationsApprovedCount: result.totalApplicationsApprovedCount ?? 0,
+                            totalApplicationsTodayCount: result.totalApplicationsTodayCount ?? 0
+                        };
+                        renderApplicationsMetrics(state.applicationsMetrics);
+                    } else {
+                        renderApplicationsMetrics(state.applicationsMetrics);
+                    }
                     renderApplicationsTable(state.applicationsResult.items);
-                    renderApplicationsPagination(state.applicationsResult.page,state.applicationsResult.totalPages);
                     bindApplicationsTableEvents();
+                    
+                    renderApplicationsPagination(state.applicationsResult.page, state.applicationsResult.totalPages);
                     bindApplicationsPaginationEvents();
 
                     bindSortEvents(document.querySelector(".ApplicationsSortSelect select"),

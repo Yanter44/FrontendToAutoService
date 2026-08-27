@@ -13,9 +13,7 @@ window.signalRClient = {
     
     on(eventName, callback) {
         this.connection.on(eventName, callback);
-
     },
-
     async invoke(method, ...args) {
         return await this.connection.invoke(method, ...args);
     }

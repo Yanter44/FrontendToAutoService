@@ -87,8 +87,15 @@ const initNotificationDropDown = () => {
 const initNotifications = async () => {
     const notifications = await notificationService.getNotifications(1, 10);
     console.log(`Нотификации: ${notifications}`);
-    renderNotificationCountField(notifications.length);
-    notifications.forEach(notification => {
+    const sortedNotifications = [...notifications].sort((a, b) => {
+        const dateA = new Date(a.createdAt).getTime();
+        const dateB = new Date(b.createdAt).getTime();
+        return dateA - dateB; 
+    });
+
+    console.log(`Загружено уведомлений: ${sortedNotifications.length}`);
+    renderNotificationCountField(sortedNotifications.length);
+    sortedNotifications.forEach(notification => {
         const template = NotificationTemplates[notification.notificationType];
 
         if (!template) {
@@ -96,7 +103,6 @@ const initNotifications = async () => {
             return;
         }
         const htmlresult = template(notification);
-        console.log(htmlresult);
         renderNotification(htmlresult);
     });
 };
@@ -172,16 +178,13 @@ const initNavigation = () => {
         
         try {
             switch (targetScreenName) {
-                case 'orders': 
-                    if (state.applications.length === 0) {
+                case 'applications': 
+                    if (state.applicationsResult.items.length === 0) {
                         const page = 1;
-                        const pageSize = 10;
-
-                        const result = await agentservice.getmyapplications(page, pageSize);
-                        console.log("заявки:", result);
-                        const applications = result.items;
-                        const totalCount = result.totalCount || 0;
-                        state.applications = applications;
+                        const pageSize = 5;
+                        const result = await applicationService.getApplications(page, pageSize);
+                        state.applicationsResult = result;
+                        console.log(result);
                     }
                     if(state.vehicleCategories.length === 0){
                         const categories = await vehicleService.getAllVehicleCategories();
@@ -194,21 +197,44 @@ const initNavigation = () => {
                         console.log("ПТО из API:", ptos);                  
                         state.ptos = ptos;
                     }
-                    renderApplicationsTable(state.applications, state.totalCount);
+                    if (Object.values(state.applicationsMetrics ?? {}).every(v => v == null)) {
+                        const result = await applicationService.getApplicationsMetrics();
+                        state.applicationsMetrics = {
+                            totalApplicationsCount: result.totalApplicationsCount ?? 0,
+                            totalApplicationsInModerationCount: result.totalApplicationsInModerationCount ?? 0,
+                            totalApplicationsApprovedCount: result.totalApplicationsApprovedCount ?? 0,
+                            totalApplicationsTodayCount: result.totalApplicationsTodayCount ?? 0
+                        };
+                        console.log('Метрики загружены:', state.applicationsMetrics);
+                        renderApplicationsMetrics(state.applicationsMetrics);
+                    } else {
+                        renderApplicationsMetrics(state.applicationsMetrics);
+                    }
+                    renderApplicationsTable(state.applicationsResult.items);
+                    renderApplicationsPagination(state.applicationsResult.page, state.applicationsResult.totalPages);
                     bindApplicationsTableEvents();
+                    bindApplicationsPaginationEvents();
+                    bindSortEvents(document.querySelector(".ApplicationsSortSelect select"),
+                                   document.getElementById("ApplicationsSearchSortInput"),
+                                   filterAndSortApplications);
                     break;
                 case 'finances':
                     if (state.financesHistory.length === 0) {
                         const result = await agentservice.getmybalancetransactionstory();  
                         state.financesHistory = result;                
                     }  
-                    if (state.balance === null || state.debtlimit === null) {
+                    if (Object.values(state.finances ?? {}).every(v => v == null)) {
                         const balanceresult = await agentservice.getmybalance();
                         const debtlimitresult = await agentservice.getmydebtlimit();
-                        state.balance = balanceresult.data;
-                        state.debtlimit = debtlimitresult.data;
+                        const currentDebt = await agentservice.getmycurrentdebt();
+                        state.finances.balance = balanceresult.data;
+                        state.finances.debtlimit = debtlimitresult.data;
+                        state.finances.currentdebt = currentDebt.data;
+                        renderAgentFinanceStatus(state.finances.balance, state.finances.debtlimit, state.finances.currentdebt);
                     }
-                    renderAgentFinanceStatus(state.balance, state.debtlimit, state.currentdebt);
+                    else {
+                        renderAgentFinanceStatus(state.finances.balance, state.finances.debtlimit, state.finances.currentdebt);
+                    }
                     renderFinancesTable(state.financesHistory);
                     break;
                     

@@ -280,7 +280,10 @@ body {
     box-sizing: border-box;
     border: 2px solid #ffffff;
 } 
-
+.AgentBalanceValue{
+    color: #27CD83;
+    font-weight: bold;
+}
 .BtnDeletePhoto:hover {
     background: #ef4444;
 }

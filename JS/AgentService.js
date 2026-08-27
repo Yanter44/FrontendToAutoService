@@ -54,6 +54,21 @@ window.agentservice = {
             console.error(error);
         }
     },   
+    async getmycurrentdebt(){
+        try{
+            const response = await customFetch(`${config.API_BASE}/Agent/GetMyCurrentDebt`,{
+                method: "GET",
+                headers: { 'Content-Type': 'application/json' },
+                credentials: "include",
+            });
+            const result = await response.json();
+            console.log("текущая задолженность", result);
+            return result;
+        }
+        catch(error){
+            console.error(error);
+        }
+    },
     async getmybalancetransactionstory() {
         try {
             const response = await customFetch(`${config.API_BASE}/Agent/GetMyBalanceTransactionStory`, {

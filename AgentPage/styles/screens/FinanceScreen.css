@@ -1,3 +1,34 @@
+.FinancesScreen::-webkit-scrollbar {
+    width: 4px;            
+}
+
+.FinancesScreen::-webkit-scrollbar-track {
+    background: transparent;       
+}
+
+.FinancesScreen::-webkit-scrollbar-thumb {
+    background: #b8d4e3;        
+    border-radius: 20px;           
+    transition: all 0.3s ease;
+}
+
+.FinancesScreen::-webkit-scrollbar-thumb:hover {
+    background: #7eb8d4;         
+}
+
+.FinancesScreen::-webkit-scrollbar-thumb:active {
+    background: #5ba3c4;        
+}
+
+.FinancesScreen::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+.FinancesScreen{
+    height: 100%;
+    overflow-y: auto;
+    min-height: 0;
+}
 .AvailableBalance, 
 .DebtLimit,
 .CurrentDebt {
@@ -6,14 +37,24 @@
     border-radius: 12px;
     border: 1px solid #e2e8f0;
     width: 100%;
+    gap: 15px;
     max-width: 280px; 
     padding: 16px; 
     min-height: 90px; 
     box-sizing: border-box; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.AvailableBalance:hover,
+.DebtLimit:hover ,
+.CurrentDebt:hover  {
+    transform: translateY(-2px);
+    border-color: #e3e8f0;
+    box-shadow: 0 8px 24px rgba(31, 41, 55, 0.07);
 }
 .FinanceAvalibleBalanceSvgHolder{
     padding: 10px;
-    background: #E9FFEC;
+    background: #F0FFF5;
     border-radius: 10px;
     display: flex;
     justify-content: flex-end;
@@ -23,7 +64,7 @@
 }
 .FinanceDebtLimitSvgHolder {
     padding: 10px;
-    background: #F2F2F2;
+    background: #F7F7F8;
     border-radius: 10px;
     display: flex;
     justify-content: flex-end;
@@ -35,7 +76,7 @@
 
 .FinanceCurrentDebtSvgHolder{
     padding: 10px;
-    background-color: #FFBABB;
+    background-color: #FFF4F4;
     border-radius: 10px;
     display: flex;
     justify-content: flex-end;
@@ -50,11 +91,15 @@
     flex-direction: column;
 }
 .FinanceStatus {
-    display: flex;
-    gap: 16px; 
-    margin-top: 20px;
     margin-left: 20px;
-    flex-wrap: wrap;
+    display: grid;
+    gap: 16px;
+    justify-content: start;
+    width: auto;
+    grid-template-columns: auto auto auto;
+    cursor: pointer;
+    margin-top: 20px;
+    grid-auto-flow: column;
 }
 
 
@@ -226,30 +271,119 @@
     color: #22C55E;
 }
 
-.FinanceStatusPending {
-    background: #EFF6FF;
-    color: #3B82F6;
-}
 
 @media (max-width: 1024px) {
+
     .AvailableBalance,
     .DebtLimit,
     .CurrentDebt {
-        max-width: none;
+        display: flex;
+        background: #FFFFFF;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        width: 100%;
+        gap: 10px;
+        max-width: 280px;
+        padding: 16px;
+        min-height: 90px;
+        box-sizing: border-box;
+        text-align: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        align-items: center;
+        flex-direction: column-reverse;
     }
-
     .FinanceStatus,
     .FinanceTableBorder {
         margin-left: 0;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         margin-right: 0;
+        padding: 5px;
     }
 
     .FinanceHistoryTable {
-        min-width: 720px;
+        table-layout: fixed;
+        width: 100%;
+    }
+    .FinanceHistoryTable thead {
+        display: none;
+    }
+    .FinanceBalanceInfo{
+        font-size: 10px;
     }
 
+    .FinanceHistoryTable tbody tr {
+        display: block;
+        background: white;
+        border-radius: 16px;
+        padding: 16px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e8edf5;
+        transition: all 0.2s ease;
+    }
+
+    .FinanceHistoryTable tbody tr:active {
+        transform: scale(0.98);
+    }
+
+    .FinanceHistoryTable tbody td {
+        display: block;
+        align-items: center;
+        padding: 8px 0;
+        margin-left: 20px;
+        border: none;
+        border-bottom: 1px solid #f1f5f9;
+        text-align: left;
+        word-break: break-word;
+    }
+
+    .FinanceHistoryTable tbody td:last-child {
+        border-bottom: none;
+        padding-top: 12px;
+        justify-content: flex-start;
+    }
+
+    .FinanceHistoryTable tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #64748b;
+        font-size: 12px;
+        min-width: 80px;
+        flex-shrink: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .FinanceHistoryTable tbody td {
+        background: transparent !important;
+    }
+
+    .FinanceHistoryTable tbody td:last-child {
+        gap: 8px;
+    }
+
+    .FinanceHistoryTable tbody td:last-child .BtnRedactPrompt,
+    .FinanceHistoryTable tbody td:last-child .BtnDeletePrompt {
+        width: 40px;
+        height: 36px;
+    }
+
+    .FinanceHistoryTable {
+        background: transparent;
+        border-radius: 0;
+        overflow: visible;
+    }
     .FinanceTableBorder {
         overflow-x: auto;
         padding: 14px;
+    }
+    .FinanceCurrentDebtSvgHolder svg {
+        width: 25px;
+    }
+    .FinanceAvalibleBalanceSvgHolder svg {
+        width: 25px;
+    }
+    .FinanceDebtLimitSvgHolder svg {
+        width: 25px;
     }
 }

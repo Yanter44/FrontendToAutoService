@@ -169,6 +169,7 @@ window.ui = {
     //Notifications
     NotificationTrigger: document.getElementById('NotificationTrigger'),
     NotificationModalDropDown: document.getElementById('NotificationModalDropDown'),
+    NotificationModalBody: document.querySelector('.NotificationModalBody'),
     NotificationCountField: document.getElementById('NotificationCountField'),
 
     //Loader

@@ -8,14 +8,8 @@ const renderApplicationsTable = (applications, totalCount) => {
     }
 
     const tableRowsHTML = applications.map(app => {
-        const carInfo = (app.brand || app.model) 
-            ? `${app.brand || ''} ${app.model || ''}`.trim() 
-            : "Не указано";
-            
-        const vinShort = app.vin && app.vin.length > 10 
-            ? `${app.vin}` 
-            : (app.vin || "—");
-
+        const carInfo = (app.brand || app.model)  ? `${app.brand || ''} ${app.model || ''}`.trim() : "Не указано";
+        const vinShort = app.vin && app.vin.length > 10  ? `${app.vin}` : (app.vin || "—");
         return `
             <tr class="ApplicationTableRow" data-application-id="${app.id}">
                 <td>${app.id}</td>
@@ -29,6 +23,53 @@ const renderApplicationsTable = (applications, totalCount) => {
     }).join('');
     tbody.innerHTML = tableRowsHTML;
 };
+
+const renderApplicationsMetrics = (applicationsMetrics) => {
+    const container = document.querySelector('.ApplicationsMetrics');
+    if (!container) {
+        console.warn('Контейнер .ApplicationsMetrics не найден');
+        return;
+    }
+    const configs = metricsConfig.getConfig(applicationsMetrics);
+
+    const html = configs.map(metric => `
+        <div class="ApplicationsMetric ${metric.className}">
+            <div class="ApplicationsMetricIcon">
+                ${metric.svg}
+            </div>
+            <div class="ApplicationsMetricContent">
+                <span class="ApplicationsMetricTitle">${metric.title}</span>
+                <strong class="ApplicationsMetricValue">${metric.value}</strong>
+            </div>
+        </div>
+    `).join('');
+    container.innerHTML = html;
+};
+const bindSortEvents = (select, searchInput, callback) => {
+    if (select) {
+        select.onchange = callback;
+    }
+    if (searchInput) {
+        searchInput.oninput = callback;
+    }
+};
+const filterAndSortApplications = () => {
+    const searchInput = document.getElementById("ApplicationsSearchSortInput");
+    const select = document.querySelector(".ApplicationsSortSelect select");
+
+    const searchValue = searchInput.value.toLowerCase().trim();
+    const sortValue = select.value;
+
+    const result = filterAndSort({
+        items: state.applicationsResult.items,
+        searchValue,
+        searchFields: applicationsSortConfig.searchFields,
+        sortValue,
+        sortOptions: applicationsSortConfig.sortOptions
+    });
+    renderApplicationsTable(result);
+};
+
 const renderAgentFinanceStatus = (balance, debtlimit, currentdebt) => {
     ui.AgentFinanceBalance.textContent = balance + " ₽";
     ui.AgentFinanceDebtLimit.textContent = debtlimit + " ₽";
@@ -52,6 +93,7 @@ const renderFinancesTable = (financeHistory) => {
     }).join('');
     tbody.innerHTML = tableRowHTML;
 };
+
 const getTransactionStatusBadgeHtml = (status) => {
     switch(status) {
         case "Completed":
@@ -123,6 +165,7 @@ const renderLoaderProgress = (percent) => {
     ui.LoaderProgressBarProgressFill.style.width = `${percent}%`;
     ui.LoaderLoadingProgressBarPercents.innerHTML = `${percent}%`;
 };
+
 const renderPtos = (ptos, categoryId) => {
     if (!ui.CreateApplicationPtoSelect) return;
 
@@ -161,15 +204,16 @@ const renderVehicleCategories = (categories) =>{
 };
 
 const renderProfile = (data) => {
-    const firstLetter = data.name?.[0]?.toUpperCase() ?? '?';
-    const roleText = `Должность: ${data.role}`;
+    console.log("данные профиля", data);
+    const firstLetter = data.fio?.[0]?.toUpperCase() ?? '?';
+    const roleText = `Должность: Агент`;
 
     ui.useravatarletter.textContent = firstLetter;
-    ui.username.textContent = data.name;
+    ui.username.textContent = data.fio;
     ui.userrole.textContent = roleText;
       
     if (ui.DropDownUseravatarletter) ui.DropDownUseravatarletter.textContent = firstLetter;
-    if (ui.DropDownUsername) ui.DropDownUsername.textContent = data.name;
+    if (ui.DropDownUsername) ui.DropDownUsername.textContent = data.fio;
     if (ui.DropDownUserrole) ui.DropDownUserrole.textContent = roleText;
 
     ui.DropDownSignOutButton.addEventListener('click', async (event) => {
@@ -186,13 +230,102 @@ const bindApplicationsTableEvents = () => {
         if (!row) return;
 
         const id = Number(row.dataset.applicationId);
-        const app = state.applications.find(x => x.id === id);
+        const app = state.applicationsResult.items.find(x => x.id === id);
         if (!app) return;
-        console.log(app);
+
         openApplicationSidebar(app);
     });
 };
 
+const bindApplicationsPaginationEvents = () => {
+    const container = document.querySelector('.ApplicationsPagination');
+    if (!container) return;
+    container.onclick = async (e) => {
+
+        const button = e.target.closest("button");
+        if (!button) return;
+        if (button.disabled) return;
+
+        const page = Number(button.dataset.page);
+        if (!page) return;
+
+        const result = await applicationService.getApplications(page, state.applicationsResult.pageSize);
+
+        state.applicationsResult = result;
+        renderApplicationsTable(state.applicationsResult.items);
+        renderApplicationsPagination(state.applicationsResult.page, state.applicationsResult.totalPages);
+        bindApplicationsTableEvents();
+    };
+};
+const renderApplicationsPagination = (page, totalPages) => {
+    const container = document.querySelector('.ApplicationsPagination');
+    let html = '';
+    html += `
+        <button
+            class="ApplicationsPaginationButton"
+            data-page="${page - 1}"
+            ${page === 1 ? 'disabled' : ''}>
+            ←
+        </button>
+    `;
+
+    if (totalPages <= 7) {
+
+        for (let i = 1; i <= totalPages; i++) {
+
+            html += `
+                <button
+                    class="ApplicationsPaginationNumber ${i === page ? 'Active' : ''}"
+                    data-page="${i}">
+                    ${i}
+                </button>
+            `;
+        }
+    }
+    else {
+        html += `
+            <button
+                class="ApplicationsPaginationNumber ${page === 1 ? 'Active' : ''}"
+                data-page="1">
+                1
+            </button>
+        `;
+        if (page > 3) {
+            html += `<span class="ApplicationsPaginationDots">...</span>`;
+        }
+        const start = Math.max(2, page - 1);
+        const end = Math.min(totalPages - 1, page + 1);
+
+        for (let i = start; i <= end; i++) {
+            html += `
+                <button
+                    class="ApplicationsPaginationNumber ${i === page ? 'Active' : ''}"
+                    data-page="${i}">
+                    ${i}
+                </button>
+            `;
+        }
+        if (page < totalPages - 2) {
+            html += `<span class="ApplicationsPaginationDots">...</span>`;
+        }
+        html += `
+            <button
+                class="ApplicationsPaginationNumber ${page === totalPages ? 'Active' : ''}"
+                data-page="${totalPages}">
+                ${totalPages}
+            </button>
+        `;
+    }
+    html += `
+        <button
+            class="ApplicationsPaginationButton"
+            data-page="${page + 1}"
+            ${page === totalPages ? 'disabled' : ''}>
+            →
+        </button>
+    `;
+    container.innerHTML = html;
+};
 const openApplicationSidebar = (app) => {
     ui.Workspace.classList.add('SidebarOpen');
     state.selectedApplication = app;
@@ -323,3 +456,4 @@ const renderPhotoRequirements = (requirements) => {
         ui.AddTsPhotoModalPhotoTypeSelect.appendChild(option);
     });
 };
+

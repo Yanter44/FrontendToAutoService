@@ -69,3 +69,20 @@ const formatDateTime = (dateString) => {
         minute: '2-digit'
     });
 };
+
+const filterAndSort = ({items,searchValue,searchFields,sortValue,sortOptions}) => {
+    let result = [...items];
+    if(searchValue){
+        const value = searchValue.toLowerCase();
+        result = result.filter(item =>
+            searchFields.some(field =>
+                item[field]?.toString().toLowerCase().includes(value)
+            )
+        );
+    }
+    const sortFunction = sortOptions[sortValue];
+    if(sortFunction){
+        result.sort(sortFunction);
+    }
+    return result;
+};
