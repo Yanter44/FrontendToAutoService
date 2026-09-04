@@ -193,6 +193,7 @@
     .DetailsTabs {
         gap: 16px;
         overflow-x: auto;
+<<<<<<< HEAD
         justify-content: center;
     }
     .DetailsHeader {
@@ -201,5 +202,8 @@
         align-items: center;
         gap: 10px;
         margin-bottom: 24px;
+=======
+        justify-content: flex-start;
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
     }
 }

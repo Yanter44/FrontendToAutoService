@@ -203,6 +203,7 @@
     background-color: #fef2f2; 
     border-color: #ef4444;  
 }
+<<<<<<< HEAD
 .UsersPagination{
     margin-top: 10px;
     display: flex;
@@ -210,6 +211,9 @@
     align-items: center;
     gap: 10px;
 }
+=======
+
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 @media (max-width: 1024px) {
     .UsersTable thead {
         display: none;

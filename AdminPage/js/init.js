@@ -84,11 +84,20 @@ const initNotificationDropDown = () => {
 
 const initNotifications = async () => {
     const notifications = await notificationService.getNotifications(1, 10);
+<<<<<<< HEAD
+=======
+    console.log(`Нотификации: ${notifications}`);
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
     const sortedNotifications = [...notifications].sort((a, b) => {
         const dateA = new Date(a.createdAt).getTime();
         const dateB = new Date(b.createdAt).getTime();
         return dateA - dateB; 
     });
+<<<<<<< HEAD
+=======
+
+    console.log(`Загружено уведомлений: ${sortedNotifications.length}`);
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
     renderNotificationCountField(sortedNotifications.length);
     sortedNotifications.forEach(notification => {
         const template = NotificationTemplates[notification.notificationType];
@@ -102,6 +111,52 @@ const initNotifications = async () => {
     });
 };
 
+<<<<<<< HEAD
+=======
+const initApplicationSidebarTabs = () => {
+    const tabsContainer = document.querySelector('.DetailsTabs');
+    if (!tabsContainer) return;
+
+    tabsContainer.addEventListener('click', (e) => {
+        const clickedTab = e.target.closest('span');
+        if (!clickedTab) return;
+
+        const tabs = tabsContainer.querySelectorAll('span');
+        tabs.forEach(t => t.classList.remove('Active'));
+        clickedTab.classList.add('Active');
+
+        const isMedia = clickedTab.textContent.includes('Фото');
+
+        const vehicleTab = document.getElementById('Tab-VehicleData');
+        const mediaTab = document.getElementById('Tab-MediaData');
+
+        if (isMedia) {
+            vehicleTab?.classList.remove('Active', 'FadeIn');
+            mediaTab?.classList.add('Active');
+            setTimeout(() => mediaTab?.classList.add('FadeIn'), 10);
+        } else {
+            mediaTab?.classList.remove('Active', 'FadeIn');
+            vehicleTab?.classList.add('Active');
+            setTimeout(() => vehicleTab?.classList.add('FadeIn'), 10);
+        }
+    });
+};
+
+const initSidebarCloseOnOutsideClick = () => {
+    document.addEventListener('click', (e) => {
+        const isOpen = ui.Workspace.classList.contains('SidebarOpen');
+        if (!isOpen) return;
+
+        const sidebar = document.querySelector('.DetailsSidebar');
+        const clickedInsideSidebar = e.target.closest('.DetailsSidebar');
+        const clickedRow = e.target.closest('.ApplicationTableRow');
+
+        if (!clickedInsideSidebar && !clickedRow && !ui.EditApplicationPhotoModal.classList.contains('Active')) {
+            closeApplicationSidebar();
+        }
+    });
+};
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 
 const initNavigation = () => {
     if (!ui.navLinks.length || !ui.screens.length) return;
@@ -116,6 +171,7 @@ const initNavigation = () => {
             const isTarget = screen.getAttribute('data-screen') === targetScreenName;
             screen.classList.toggle('Hidden', !isTarget);
         });
+<<<<<<< HEAD
         closeMobileNav();
         if (ui.Workspace) {
             ui.Workspace.classList.remove('SidebarOpen');
@@ -128,27 +184,91 @@ const initNavigation = () => {
                     await applicationsPagination.loadPage(1);
                     bindApplicationsTableEvents();
                     renderApplicationsMetrics(state.applicationsMetrics);
+=======
+
+        closeMobileNav();
+
+        if (ui.Workspace) {
+            ui.Workspace.classList.remove('SidebarOpen');
+        }
+        
+        try {
+            switch (targetScreenName) {
+                case 'applications':
+                    if (state.applicationsResult.items.length === 0) {
+                        console.log(state.page);
+                        console.log(state.pageSize);
+                        const result = await applicationService.getApplications(state.page, state.pageSize);
+                        state.applicationsResult = result;
+                        console.log(result);
+                    }
+                    if (Object.values(state.applicationsMetrics ?? {}).every(v => v == null)) {
+                        const result = await applicationService.getApplicationsMetrics();
+                        state.applicationsMetrics = {
+                            totalApplicationsCount: result.totalApplicationsCount ?? 0,
+                            totalApplicationsInModerationCount: result.totalApplicationsInModerationCount ?? 0,
+                            totalApplicationsApprovedCount: result.totalApplicationsApprovedCount ?? 0,
+                            totalApplicationsTodayCount: result.totalApplicationsTodayCount ?? 0
+                        };
+                        renderApplicationsMetrics(state.applicationsMetrics);
+                    } else {
+                        renderApplicationsMetrics(state.applicationsMetrics);
+                    }
+                    renderApplicationsTable(state.applicationsResult.items);
+                    bindApplicationsTableEvents();
+                    
+                    renderApplicationsPagination(state.applicationsResult.page, state.applicationsResult.totalPages);
+                    bindApplicationsPaginationEvents();
+
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
                     bindSortEvents(document.querySelector(".ApplicationsSortSelect select"),
                                    document.getElementById("ApplicationsSearchSortInput"),
                                    filterAndSortApplications);
                     break;
                 case 'users':
+<<<<<<< HEAD
                     await ensure.users();
                     await usersPagination.loadPage(1);
+=======
+                    if (!state.users || state.users.length === 0) {
+                        const result = await userService.getAllUsersExcept();
+                        console.log("Пользователи: ", result);
+                        if (Array.isArray(result)) {
+                            state.users = result;
+                        }
+                    }
+                    await renderUsersTable(state.users);
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
                     bindSortEvents(document.querySelector(".UsersSortSelect select"),
                                    document.getElementById("UsersSearchSortInput"),
                                    filterAndSortUsers);
                     break;
                 case 'ptos': 
+<<<<<<< HEAD
                     await ensure.ptos();
                     await ptosPagination.loadPage(1);
+=======
+                    if (state.ptos.length === 0) { 
+                        const result = await ptoService.getAllPtos();
+                        console.log("ПТО из API:", result);
+                        state.ptos = result;
+                    }
+                    await renderPtosTable(state.ptos);
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
                     bindSortEvents(document.querySelector(".PtosSortSelect select"),
                                    document.getElementById("PtosSearchSortInput"),
                                    filterAndSortPtos);
                     break;
                 case 'prompts': 
+<<<<<<< HEAD
                     await ensure.prompts();
                     await promptsPagination.loadPage(1);
+=======
+                    if (!state.prompts || state.prompts.length === 0) {
+                        await ensure.prompts();
+                    }
+                    renderPromptsTable(state.prompts);
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
                     bindSortEvents(document.querySelector(".PromptsSortSelect select"),
                                    document.getElementById("PromptsSearchSortInput"),
                                    filterAndSortPrompts);
@@ -166,9 +286,25 @@ const initNavigation = () => {
                     break;
 
                 case 'accruals':
+<<<<<<< HEAD
                     await ensure.allAgents();
                     await ensure.transactions();
                     await transactionsPagination.loadPage(1);
+=======
+                    if (!state.availableagents || state.availableagents.length === 0) {
+                        const availableAgents = await userService.getAllAgents();
+
+                        if (Array.isArray(availableAgents)) {
+                            state.availableagents = availableAgents;
+                        }
+                    }
+
+                    if(!state.alltransactions || state.alltransactions.length ===0){
+                        const alltransactions = await paymentService.getalltransactions();
+                        state.alltransactions = alltransactions;                        
+                    }
+                    await renderTransactionsTable(state.alltransactions);
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
                     await renderAvailableAgents(state.availableagents);
                     bindSortEvents(document.querySelector(".AccrualsSortSelect select"),
                                    document.getElementById("AccrualsSearchSortInput"),
@@ -198,6 +334,7 @@ const initNavigation = () => {
     }
 };
 
+<<<<<<< HEAD
 const bindAllHandlers = () => {
     console.log('🔄 Биндинг всех обработчиков...');
     bindApplicationSidebarHandlers();
@@ -214,6 +351,278 @@ const bindAllHandlers = () => {
     bindPromptModalHandlers();
     bindPtoModalHandlers();
     bindRedactUserModalHandlers();
+=======
+const initNewPtoModal = () => {
+   if (!ui.AddNewPtoModal) return;
+
+   ui.BtnAddNewPto.addEventListener('click', async () => {
+      const categories = await vehicleService.getAllVehicleCategories();
+      renderPricePolicyTable(categories);
+      ui.AddNewPtoModal.classList.add('Active');
+   });
+
+   if (ui.AddNewPtoModalOverlay) {
+      ui.AddNewPtoModalOverlay.addEventListener('click', closeNewPtoModal);
+   }
+   
+   if (ui.AddNewPtoSubmitButton) {
+      ui.AddNewPtoSubmitButton.addEventListener('click', async () => {
+           await actions.submitNewPto();
+      });
+   }
+};
+
+const initPhotoRequirementModal = () => {
+    if (!ui.AddNewPhotoRequirementModal) return;
+
+    ui.BtnAddNewPhotoRequirement.addEventListener('click', async () => {
+       ui.AddNewPhotoRequirementModal.classList.add('Active');
+    });
+
+    if (ui.AddNewPhotoRequirementOverlay) {
+        ui.AddNewPhotoRequirementOverlay.addEventListener('click', closePhotoRequirementModal);
+    }
+
+    if(ui.AddNewPhotoRequirementSubmitButton){
+        ui.AddNewPhotoRequirementSubmitButton.addEventListener('click', async () =>{
+           await actions.submitNewPhotoRequirement();
+        });
+    }
+};
+
+const initDocumentRequirementModal = () => {
+    if (!ui.AddNewDocumentRequirementModal) return;
+
+    ui.BtnAddNewDocumentRequirement.addEventListener('click', async () => {
+       ui.AddNewDocumentRequirementModal.classList.add('Active');
+    });
+
+    if (ui.AddNewDocumentRequirementOverlay) {
+        ui.AddNewDocumentRequirementOverlay.addEventListener('click', closeDocumentRequirementModal);
+    }
+
+    if(ui.AddNewDocumentRequirementSubmitButton){
+        ui.AddNewDocumentRequirementSubmitButton.addEventListener('click', async () =>{
+            await actions.submitNewDocumentRequirement();
+        });
+    }
+};
+
+const initAccrualsModal = () => {
+    if(!ui.AccrualBalanceModal) return;
+
+    ui.BtnAccrualToBalance.addEventListener('click', async () => {
+        ui.AccrualBalanceModal.classList.add('Active');
+    });
+   
+    if(ui.AccrualBalanceOverlay){
+        ui.AccrualBalanceOverlay.addEventListener('click', closeAccrualBalanceModal);
+    }
+    if(ui.AccrualBalanceSubmitButton){
+        ui.AccrualBalanceSubmitButton.addEventListener('click', async () => {
+            const model = {
+                agentId: Number(ui.AccrualBalanceSelect.value),
+                amount: Number(ui.AccrualBalanceCashInput.value),
+                comment: ui.AccrualBalanceCommentInput.value,
+                idempotencyKey: crypto.randomUUID()
+            };
+            await actions.submitNewCreditTransaction(model);
+        });
+    }
+    initAmountButtons(ui.QuickAmountButtons, ui.AccrualBalanceCashInput);
+};
+
+const initDeductModal = () => {
+    if(!ui.DeductBalanceModal) return;
+
+    ui.BtnDeductFromBalance.addEventListener('click', async () => {
+        ui.DeductBalanceModal.classList.add('Active');
+    });
+
+    if(ui.DeductBalanceOverlay){
+        ui.DeductBalanceOverlay.addEventListener('click', closeDeductBalanceModal);
+    }
+
+    if(ui.DeductBalanceSubmitButton) {
+        ui.DeductBalanceSubmitButton.addEventListener('click', async () => {
+            const model = {
+                agentId: Number(ui.DeductBalanceSelect.value),
+                amount: Number(ui.DeductBalanceCashInput.value),
+                comment: ui.DeductBalanceCommentInput.value,
+                idempotencyKey: crypto.randomUUID()
+            };
+            await actions.submitNewDebitTransaction(model);
+        });
+    }
+    initAmountButtons(ui.DeductModalQuickAmountButtons, ui.DeductBalanceCashInput);
+};
+
+const initUsersTable = () => {
+    redactUserButtons = document.querySelectorAll('.BtnRedactUser');
+    deleteUserButtons = document.querySelectorAll('.BtnDeleteUser');
+    
+    redactUserButtons.forEach(button => {
+        const tablerow = button.closest('.UserTableRow');
+        const userid = tablerow.getAttribute('data-user-id');
+        button.addEventListener('click', () => {
+            openRedactUserModal(userid);
+        });
+    });
+    deleteUserButtons.forEach(button => {
+        const tablerow = button.closest('.UserTableRow');
+        const userid = tablerow.getAttribute('data-user-id');
+        button.addEventListener('click', () =>{
+            openDeleteUserModal(userid);
+        });
+    });
+    
+};
+
+const initRedactUserModal = () => {
+    ui.RedactUserModalOverlay.addEventListener('click', closeRedactUserModal);
+
+    const leftMenu = document.querySelector('.RedactUserModalLeftMenu');
+
+    leftMenu.addEventListener('click', (e) => {
+        const row = e.target.closest('.RedactUserModalLeftItem');
+        if (!row) return;
+
+        document.querySelectorAll('.RedactUserModalLeftItem').forEach(item => {
+            item.classList.remove('Active');
+        });
+
+        row.classList.add('Active');
+
+        const target = row.dataset.redactusermodalLefttab;
+
+        state.redactUser.activeTab = target;
+        console.log("сейчас находимся тут -> " + target);
+        
+        document.querySelectorAll('.RedactUserModalRightContent').forEach(content => {
+            content.classList.remove('Active');
+        });
+
+        document.querySelector(`[data-content="${target}"]`)?.classList.add('Active');
+    });
+
+    const roleDropdown = document.getElementById('RoleDropdown');
+    const selectedRole = document.getElementById('SelectedRole');
+
+    roleDropdown.addEventListener('click', (e) => {
+        const item = e.target.closest('.RedactUserModalDropdownItem');
+
+        if (item) {
+            selectedRole.textContent = getNormalRoleName(item.dataset.value);
+            selectedRole.dataset.roleId = item.dataset.id;
+
+            roleDropdown.classList.remove('Active');
+            e.stopPropagation();
+            return;
+        }
+
+        roleDropdown.classList.toggle('Active');
+    });
+    const submitButton = document.getElementById('RedactUserModalBtnSubmit');
+    submitButton.addEventListener('click', async () => {
+
+        const userId = state.redactUser.userId;
+        const activeTab = state.redactUser.activeTab;
+
+        console.log('Подтверждение изменений');
+        console.log('User ID:', userId);
+        console.log('Активная вкладка:', activeTab);
+
+        switch (activeTab) {
+
+            case 'userRoleChangeContent':
+                await submitUserRoleChange(userId);
+                break;
+
+            case 'userDebtLimit':
+                await submitUserDebtLimitChange(userId);
+                break;
+
+            case 'userStatusChangeContent':
+                await submitUserStatusChange(userId);
+                break;
+
+            default:
+                console.error('Неизвестная вкладка:',activeTab);
+        }
+    });
+};
+
+const initPromptsTable = () => {
+    redactPromptButtons = document.querySelectorAll('.BtnRedactPrompt');
+    deletePromptButtons = document.querySelectorAll('.BtnDeletePrompt');
+
+    redactPromptButtons.forEach(button => {
+        const tablerow = button.closest('.PromptTableRow');
+        const promptid = tablerow.getAttribute('data-prompt-id');
+        button.addEventListener('click', () => {
+            openRedactPromptModal(promptid);
+        });
+    });
+
+    deletePromptButtons.forEach(button => {
+        const tablerow = button.closest('.PromptTableRow');
+        const promptid = tablerow.getAttribute('data-prompt-id');
+        button.addEventListener('click', () =>{
+            openDeletePromptModal(promptid);
+        });
+    });
+};
+
+const initPtoTable = () => {
+    redactPtoButtons = document.querySelectorAll('.BtnRedactPto');
+    deletePtoButtons = document.querySelectorAll('.BtnDeletePto');
+
+    redactPtoButtons.forEach(button => {
+        const tablerow = button.closest('.PtoTableRow');
+        const ptoid = tablerow.getAttribute('data-pto-id');
+        button.addEventListener('click', () => {
+            openRedactPtoModal(ptoid);
+        });
+    });
+
+    deletePtoButtons.forEach(button => {
+        const tablerow = button.closest('.PtoTableRow');
+        const ptoid = tablerow.getAttribute('data-pto-id');
+        button.addEventListener('click', () => {
+            openDeletePtoModal(ptoid);
+        });
+    });
+};
+
+const initAmountButtons = (buttons, input) => {
+    if (!buttons?.length || !input) return;
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('Active'));
+            btn.classList.add('Active');
+            input.value = Number(btn.dataset.value) || 0;
+        });
+    });
+};
+
+const initNewPromptModal = () => {
+    if (!ui.AddNewPromptModal) return;
+
+    ui.BtnAddNewPrompt.addEventListener('click', () => {
+        ui.AddNewPromptModal.classList.add('Active');
+    });
+
+    if (ui.AddNewPromptModalOverlay) {
+        ui.AddNewPromptModalOverlay.addEventListener('click', closeNewPromptModal);
+    }
+
+    if (ui.PromptSubmitBtn) {
+        ui.PromptSubmitBtn.addEventListener('click', async () => {
+            await actions.submitNewPrompt();
+        });
+    }
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 };
 
 const applyDesktopSidebarWidth = () => {
@@ -293,5 +702,208 @@ const initLeftMenuSidebar = () => {
     });
 };
 
+<<<<<<< HEAD
 
+=======
+const initEditApplicationPhotoModal = () => {
+    const mediaTab = document.getElementById('Tab-MediaData');
+    if (mediaTab) {
+
+        mediaTab.addEventListener('click', async (e) => {
+            const editButton = e.target.closest('.MediaEditButton');
+            if (!editButton) return;
+            e.preventDefault();
+            e.stopPropagation();
+
+            const photoId = Number(editButton.dataset.photoId);
+
+            const application = state.selectedApplication;
+
+            console.log("Выбранная Заявка: ", application);
+            if (!application) return;
+
+            const photo = application.photos.find(x => x.id === photoId);
+
+            await ensure.prompts();
+
+            console.log(state.prompts);
+            await ensure.neuronNetworks();
+            
+            console.log(state.availableNeuronNetworks);
+            renderNeuronNetworks();
+
+            const input = ui.EditApplicationPhotoTagsInput;
+            const suggestions = state.prompts.map(p => ({
+                value: p.tag,
+                promptId: p.promptId
+            }));
+
+            if (!state.photoTagsTagify) {
+                state.photoTagsTagify = new Tagify(input, {
+                    duplicates: false,
+                    maxTags: 30,
+                    whitelist: suggestions,
+                    enforceWhitelist: true
+                });
+            }
+
+            state.photoTagsTagify.settings.whitelist = suggestions;
+
+            state.photoTagsTagify.dropdown.hide();
+            state.photoTagsTagify.dropdown.refilter?.();
+
+            state.photoTagsTagify.removeAllTags();
+            openEditApplicationPhotoModal(photo);
+        });
+    }
+};
+
+const openDeletePtoModal = (id) => {
+    ui.DeletePtoModal.classList.add('Active');
+
+    ui.DeletePtoModalOverlay.addEventListener('click', () => {
+        closeDeletePtoModal();
+    });
+    const deletetablePto = state.ptos.find(pto => pto.id == id);
+    const ptoName = deletetablePto.name;
+    ui.DeletePtoModalWarningSpan.innerHTML = `Вы действительно хотите удалить ПТО "${ptoName}"?`;
+
+    ui.BtnSubmitDeletePto.addEventListener('click', async () => {
+        await actions.submitDeletePto(id);
+    });
+};
+
+const openRedactPtoModal = (id) => {
+    ui.RedactPtoModal.classList.add('Active');
+    ui.RedactPtoModalOverlay.addEventListener('click', () => {
+        closeRedactPtoModal();
+    });
+};
+
+const openRedactPromptModal = (id) => {
+    ui.RedactPromptModal.classList.add('Active');
+    ui.RedactPromptModalOverlay.addEventListener('click', () => {
+        closeRedactPromptModal();
+    });
+  
+    ui.BtnSubmitRedactPrompt.addEventListener('click', async () => {
+        const tag = ui.RedactPromptModalTagInput.value;
+        const description = ui.RedactPromptModalDescriptionInput.value;
+        const model = {
+            promptId: id,
+            tag: tag,
+            description: description
+        };
+        await actions.submitRedactPrompt(model);
+    });
+};
+
+const openDeletePromptModal = (id) => {
+    ui.DeletePromptModal.classList.add('Active');
+
+    ui.DeletePromptModalOverlay.addEventListener('click', () => {
+        closeDeletePromptModal();
+    });
+    const deletetablePrompt = state.prompts.find(prompt => prompt.promptId == id);
+    const deletePromptTag = deletetablePrompt.tag;
+
+    ui.DeletePromptModalWarningContentSpan.innerHTML = `Вы действительно хотите удалить промпт "${deletePromptTag}"?`;
+    ui.BtnSubmitDeletePrompt.addEventListener('click', async () => {
+        await actions.submitDeletePrompt(id);
+    });
+};
+
+const openRedactUserModal = async (id) => {
+    console.log("открыт пользователь с id:", id);
+    console.log("тип id:", typeof id);
+    
+    const user = state.users.find(x => x.userId === Number(id));
+
+    console.log("найденный пользователь:", user);
+    console.log("Роль пользователя:", user?.role);
+
+    const normalrolenameuser = getNormalRoleName(user.role);
+    const userregdate = user.regDate;
+    const normaluserregdate = dateTimeFormatter.formatDate(userregdate);
+
+    if (!user) {
+        console.error("Пользователь не найден:", id);
+        return;
+    }
+    state.redactUser.userId = user.userId;
+    state.redactUser.activeTab = 'userRoleChangeContent';
+
+    ui.RedactUserModal.classList.add('Active');
+
+    await ensure.availableroles();
+    console.log(normalrolenameuser);
+    console.log(userregdate);
+    renderCurrentRoleInRedactUserModal(normalrolenameuser);
+    renderUserRegDateInRedactUserModal(normaluserregdate);
+    renderAvailableRoles();
+    if(user.role !== "Admin" || user.role !== "Moderator"){
+        renderUserDebtLimitValue(user.debtLimit);
+    }
+};
+
+const getNormalRoleName = (roleName) => {
+    switch(roleName){
+        case "Admin":
+            return "Администратор"
+            break;
+        case "Moderator":
+            return "Модератор";
+            break;
+        case "Agent":
+            return "Агент";
+            break;
+    }
+};
+
+const openDeleteUserModal = (id) => {
+    ui.DeleteUserModal.classList.add('Active');
+    ui.DeleteUserModalOverlay.addEventListener('click', () => {
+       closeDeleteUserModal(); 
+    });
+    const deletableUser = state.users.find(user => user.userId == id);
+    const deletableUserName = deletableUser.fio;
+
+    ui.DeleteUserModalWarningContentSpan.innerHTML = `Вы действительно хотите удалить пользователя "${deletableUserName}"?`;
+    ui.BtnSubmitDeleteUser.addEventListener('click', async () => {
+        await actions.submitDeleteUser(id);
+    });
+};
+
+const openEditApplicationPhotoModal = (photo) => {
+    state.selectedPhoto = photo;
+    ui.EditApplicationPhotoModal.classList.add('Active');
+    ui.EditApplicationPhotoOriginalPhotoHolder.innerHTML = `<img src="${photo.url}" class="OriginalPhotoPreview"/>`;
+
+    ui.EditApplicationPhotoGeneratedPhotoResultHolder.innerHTML = `
+        <div class="GeneratedPhotoPlaceholder">
+            Результат генерации появится здесь
+        </div>
+    `;
+
+    ui.EditApplicationPhotoOverlay.addEventListener('click', () => {
+        closeEditApplicationPhotoModal();
+    });
+
+    ui.BtnSubmitGeneratePhoto.addEventListener('click', async () => {
+        const selectedPromptIds = state.photoTagsTagify.value.map(t => t.promptId);
+        const selectedAiId = Number(ui.EditApplicationPhotoNeuronNetworkSelect.value);
+        
+        const generatephotomodel = {
+            applicationId: state.selectedApplication.id,
+            photoId: state.selectedPhoto.id,
+            AiProvider: selectedAiId,
+            promptsIds: selectedPromptIds,
+        };
+        await actions.generatePhoto(generatephotomodel);
+    });
+    ui.BtnSubmitGeneratedPhoto.addEventListener('click', async () => {
+        await actions.submitGeneratedPhoto();
+    });
+};
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 

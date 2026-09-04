@@ -23,9 +23,13 @@
 .FinancesScreen::-webkit-scrollbar-corner {
     background: transparent;
 }
+<<<<<<< HEAD
 .FinanceSection{
     padding: 0px 24px 24px 24px;
 }
+=======
+
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 .FinancesScreen{
     height: 100%;
     overflow-y: auto;
@@ -36,17 +40,28 @@
 .CurrentDebt {
     display: flex;
     background: #FFFFFF;
+<<<<<<< HEAD
     cursor: pointer;
+=======
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
     border-radius: 12px;
     border: 1px solid #e2e8f0;
     width: 100%;
     gap: 15px;
+<<<<<<< HEAD
     max-width: 280px;
     padding: 16px;
     min-height: 90px;
     box-sizing: border-box;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     flex-direction: row-reverse;
+=======
+    max-width: 280px; 
+    padding: 16px; 
+    min-height: 90px; 
+    box-sizing: border-box; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 }
 
 .AvailableBalance:hover,
@@ -94,6 +109,7 @@
     width: 100%;
     flex-direction: column;
 }
+<<<<<<< HEAD
 .FinanceBalance,
  .FinanceDebtLimit, 
  .FinanceCurrentDebt{
@@ -102,6 +118,8 @@
     font-weight: 700;
 }
 
+=======
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 .FinanceStatus {
     margin-left: 20px;
     display: grid;
@@ -109,6 +127,10 @@
     justify-content: start;
     width: auto;
     grid-template-columns: auto auto auto;
+<<<<<<< HEAD
+=======
+    cursor: pointer;
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
     margin-top: 20px;
     grid-auto-flow: column;
 }
@@ -281,6 +303,7 @@
     background: #E9FFEC;
     color: #22C55E;
 }
+<<<<<<< HEAD
 .FinancesPagination{
     margin-top: 10px;
     display: flex;
@@ -288,6 +311,9 @@
     align-items: center;
     gap: 10px;
 }
+=======
+
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 
 @media (max-width: 1024px) {
 
@@ -403,7 +429,10 @@
     .FinanceDebtLimitSvgHolder svg {
         width: 25px;
     }
+<<<<<<< HEAD
     .FinancesPagination{
         justify-content: center;
     }
+=======
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 }

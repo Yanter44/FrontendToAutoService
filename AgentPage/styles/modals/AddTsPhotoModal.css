@@ -151,6 +151,7 @@
     max-height: 140px; 
     object-fit: contain; 
     border-radius: 6px;
+<<<<<<< HEAD
 }
 #AddTsPhotoModal .PhotoUploadOverlay {
     position: absolute;         
@@ -196,4 +197,6 @@
     font-weight: 600;
     font-size: 16px;
     color: #1e293b;
+=======
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 }

@@ -139,6 +139,7 @@
 
 .AddTsDocumentModalSaveButton:active {
     transform: scale(0.98);
+<<<<<<< HEAD
 }
 
 #AddTsDocumentModal .DocumentUploadOverlay {
@@ -185,4 +186,6 @@
     font-weight: 600;
     font-size: 16px;
     color: #1e293b;
+=======
+>>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 }
