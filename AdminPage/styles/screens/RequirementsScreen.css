@@ -1,0 +1,149 @@
+.RequirementsToPhotoAndDocumentsScreen{
+    height: 100%;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+#RequirementsToPhotoAndDocuments {
+    padding: 24px;
+    height: 100%;
+}
+
+.RequirementsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.RequirementsCard {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,.04);
+}
+
+.RequirementsCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.RequirementsCardHeader h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.RequirementsCardHeader span {
+    display: block;
+    margin-top: 4px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+
+.RequirementsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.RequirementsTable thead {
+    background: #f8fafc;
+}
+
+.RequirementsTable th {
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.RequirementsTable td {
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #1f2937;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.RequirementsTable tbody tr:hover {
+    background: #f8fafc;
+}
+
+.RequirementsTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.RequirementsTable input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.BtnRedactPhotoRequirement, .BtnDeletePhotoRequirement {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 36px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+.BtnRedactPhotoRequirement:hover{
+    background-color: #f0fafd;
+    border-color: #3b82f6;
+}
+.BtnDeletePhotoRequirement:hover{
+    background-color: #fef2f2;
+    border-color: #ef4444;
+}
+.BtnRedactDocumentRequirement, .BtnDeleteDocumentRequirement {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 36px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+.BtnRedactDocumentRequirement:hover{
+    background-color: #f0fafd;
+    border-color: #3b82f6;
+}
+.BtnDeleteDocumentRequirement:hover{
+    background-color: #fef2f2;
+    border-color: #ef4444;
+}
+@media (max-width: 1024px) {
+    #RequirementsToPhotoAndDocuments {
+        padding: 16px;
+    }
+
+    .RequirementsGrid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .RequirementsCardHeader {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .RequirementsTable {
+        min-width: 640px;
+    }
+}

@@ -1,0 +1,251 @@
+.AddNewPtoSection {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.AddNewPtoModalOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0 0 0 / 20%);
+    backdrop-filter: blur(2px);
+}
+
+.AddNewPtoCard {
+    position: relative;
+    width: 100%;
+    max-width: 640px; 
+    background: #ffffff;
+    border-radius: 16px;
+    z-index: 10001;
+    overflow: hidden;
+    border: 1px solid #f1f5f9;
+
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(100px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.AddNewPtoSection.Active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.AddNewPtoSection.Active .AddNewPtoCard {
+    transform: translateY(0);
+}
+
+.AddNewPtoHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    position: relative;
+}
+
+.AddNewPtoHeader h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+
+.AddNewPtoContent {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto; 
+    flex-grow: 1;
+}
+
+.AddNewPtoField {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.AddNewPtoField label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #334155;
+    text-align: left;
+}
+
+.AddNewPtoInput {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #0f172a;
+    background: #ffffff;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.AddNewPtoInput:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 213, 0.15);
+}
+
+.AddNewPtoFooter {
+    padding: 0 24px 28px 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.AddNewPtoSubmitButton {
+    width: 70%;
+    padding: 14px;
+    background: #1751ff; 
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.AddNewPtoSubmitButton:hover {
+    background: #003be5;
+}
+
+.AddNewPtoSubmitButton:active {
+    transform: scale(0.98);
+}
+
+.AddNewPtoContent::-webkit-scrollbar {
+    width: 6px;
+}
+
+.AddNewPtoContent::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 8px 0; 
+}
+
+.AddNewPtoContent::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 100px; 
+    transition: background 0.2s ease;
+}
+
+.AddNewPtoContent::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; 
+}
+
+.AddNewPtoPricePoliciesBorder {
+    margin-top: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.PtoPricePolicyTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left;
+}
+
+.PtoPricePolicyTable thead th {
+    background: #f8fafc;
+    padding: 14px 20px;
+    font-weight: 600;
+    color: #475569; 
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.PtoPricePolicyTable th:last-child,
+.PtoPricePolicyTable td:last-child {
+    text-align: right;
+}
+
+.PtoPricePolicyTableRow td {
+    padding: 12px 20px;
+    color: #0f172a;
+    font-weight: 500;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+}
+.FieldGroupHeader{
+    text-align: center;
+}
+.PtoPricePolicyTableRow:last-child td {
+    border-bottom: none;
+}
+
+.PtoPriceInputWrapper {
+    position: relative;
+    display: inline-block;
+    width: 140px; 
+}
+
+.PtoPriceInputTable {
+    width: 100%;
+    padding: 10px 32px 10px 14px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #0f172a;
+    background: #ffffff;
+    box-sizing: border-box;
+    text-align: left;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.PtoPriceInputTable:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 213, 0.15);
+}
+
+.PtoPriceCurrencySign {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #0f172a;
+    font-size: 14px;
+    pointer-events: none; 
+}
+
+.PtoPriceInputTable::-webkit-outer-spin-button,
+.PtoPriceInputTable::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.PtoPriceInputTable {
+    -moz-appearance: textfield;
+}
+
+@media (max-width: 900px) {
+    .AddNewPtoCard {
+        max-width: calc(100vw - 16px);
+        margin: 8px;
+        max-height: 92dvh;
+        overflow: auto;
+    }
+}

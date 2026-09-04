@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в аккаунт</title>
+    <link rel="stylesheet" href="authorizepage.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Assets/Images/Icons/fourdicon.png">
+</head>
+<body>
+    <div class="LoginCard" id="LoginCard">
+        <h2>Вход</h2>
+        <div class="LoginFields">
+            <div class="InputGroup">
+                <label for="email">✉ Email</label>
+                <input type="email" id="LoginEmail" class="JsEmail" placeholder="Email">
+            </div>
+            
+            <div class="InputGroup">
+                <label for="password">🔒︎ Password</label>
+                <input type="password" id="LoginPassword" class="JsPassword" placeholder="Password">
+            </div>
+            
+            <button type="button" class="LoginAndRegisterButton JsLoginSubmitBtn" id="LoginSubmitBtn">Войти</button>
+        </div>
+        <div class="LoginFooter">
+            <p>Нет аккаунта?</p>
+            <a href="#" class="JsToRegister">Зарегистрироваться</a>
+        </div>
+    </div>
+
+    <div class="RegisterCard Hidden" id="RegisterCard">
+        <h2>Зарегистрироваться</h2>
+        <div class="RegisterFields">
+            <div class="InputGroup">
+                <label for="registerEmail">✉ Email</label>
+                <input type="email" id="RegisterEmail" class="JsRegisterEmail" placeholder="Email">
+            </div>
+            
+            <div class="InputGroup">
+                <label for="registerPassword">🔒︎ Password</label>
+                <input type="password" id="RegisterPassword" class="JsRegisterPassword" placeholder="Password">
+            </div>
+            
+            <button type="button" class="LoginAndRegisterButton JsRegisterSubmitBtn" id="RegisterSubmitBtn">Зарегистрироваться</button>
+        </div>
+        <div class="RegisterFooter">
+            <p>Есть аккаунт?</p>
+            <a href="#" class="JsToLogin">Войти</a>
+        </div>
+    </div>
+
+    <div class="CodeCard Hidden" id="CodeCard">
+        <h2>Введите код подтверждения</h2>
+        <p class="CardDescription">Мы только что отправили код на вашу почту, введите его ниже</p>
+        
+        <div class="CodeFields">
+            <div class="CodeInputsContainer">
+                <input type="text" maxlength="1" class="CodeInput">
+                <input type="text" maxlength="1" class="CodeInput">
+                <input type="text" maxlength="1" class="CodeInput">
+                <input type="text" maxlength="1" class="CodeInput">
+                <input type="text" maxlength="1" class="CodeInput">
+                <input type="text" maxlength="1" class="CodeInput">
+            </div>
+            
+            <button type="button" class="LoginAndRegisterButton JsCodeSubmitBtn" id="CodeSubmitBtn">Подтвердить</button>
+        </div>
+        
+        <div class="CodeFooter">
+            <a href="#" class="JsResendCode">Отправить повторно</a>
+        </div>
+    </div>
+
+    <div class="NameCard Hidden" id="NameCard">
+        <h2>Завершите настройку аккаунта</h2>
+        <p class="CardDescription">Введите ваше имя и завершите настройку аккаунта</p>
+        
+        <div class="NameFields">
+            <div class="InputGroup">
+                <label for="userName">👤 Имя</label>
+                <input type="text" id="FIOInput" class="JsUserName" placeholder="Имя">
+            </div>
+            
+            <button type="button" class="LoginAndRegisterButton JsNameSubmitBtn" id="FIOSubmitBtn">Подтвердить</button>
+        </div>
+    </div>
+    <script src="/config.js"></script>
+    <script src="/JS/ApiServices/AuthService.js"></script>
+    <script src="authorizepage.js"></script>
+</body>
+</html>

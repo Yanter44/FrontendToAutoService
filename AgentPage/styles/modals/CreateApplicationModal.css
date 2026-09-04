@@ -1,0 +1,399 @@
+.CreateApplication {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s;
+}
+
+.CreateApplication.Active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.CreateApplication-AppCard {
+    width: 760px;
+    max-height: 90vh;
+    overflow-y: auto;
+
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+
+    transform: translateY(40px);
+    transition: 0.25s;
+}
+
+.CreateApplication.Active .CreateApplication-AppCard {
+    transform: translateY(0);
+}
+
+.CreateApplication-CardHeader {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.CreateApplication-CardHeader h2 {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+.CreateApplication-FormGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.CreateApplication-FormGroup label {
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.CreateApplication-FormGroup input {
+    height: 46px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 0 14px;
+    font-family: inherit;
+}
+
+.CreateApplication-CardActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.CreateApplication-CreateButton,
+.CreateApplication-CancelButton {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.CreateApplication-CreateButton {
+    background: #1a53ff;
+    color: white;
+}
+
+.CreateApplication-CancelButton {
+    background: #e2e8f0;
+}
+.CreateApplication {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.45);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.25s;
+}
+
+.CreateApplication.Active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.CreateApplication-AppCard {
+    width: 900px;
+    max-width: 95vw;
+
+    max-height: 90vh;
+
+    overflow: hidden;
+
+    background: white;
+
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    transform: translateY(30px);
+
+    transition: 0.25s;
+}
+
+.CreateApplication.Active .CreateApplication-AppCard {
+    transform: translateY(0);
+}
+
+.CreateApplication-CardFormScrollable {
+    overflow-y: auto;
+    padding: 20px;
+}
+.CreateApplication-CardForm{
+   display: contents;
+}
+.PhotosContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+.UploadWrapper {
+    flex-shrink: 0;
+}
+
+.CreateApplication-CardFormScrollable::-webkit-scrollbar {
+    width: 6px;
+}
+
+.CreateApplication-CardFormScrollable::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 8px 0;
+}
+
+.CreateApplication-CardFormScrollable::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 100px;
+    transition: background .2s ease;
+}
+
+.CreateApplication-CardFormScrollable::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+.PhotoUploadBtn {
+   display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 120px;
+    height: 120px;
+    background-color: #ffffff;
+    border: 2px dashed #cbd5e1;
+    border-radius: 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    flex-direction: column;
+}
+
+.PhotoUploadBtn:hover {
+    border-color: #3b66f5;
+    background-color: #f4f7ff;
+    transform: translateY(-2px);
+}
+
+.PhotoUploadBtn .PlusIcon {
+    font-size: 28px;
+    color: #3b66f5;
+    font-weight: 300;
+    line-height: 1;
+}
+.DocUploadBtn .PlusIcon{
+    font-size: 28px;
+    color: #3b66f5;
+    font-weight: 300;
+    line-height: 1;
+}
+.PhotoUploadText {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.2;
+    align-items: center;
+}
+.CreateApplication-RowInfo{
+    margin-bottom: 30px;
+}
+
+.DocsContainer {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.DocUploadBtn {
+    width: 100px;
+    height: 100px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    outline: none;
+}
+
+.DocUploadBtn:hover {
+    border-color: #3b82f6;
+    background: #eff6ff;
+}
+
+.DocUploadText {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #64748b;
+    text-align: center;
+}
+
+.DocUploadBtn:hover .DocUploadText {
+    color: #3b82f6;
+}
+
+.DocUploadBtn:hover .PlusIcon {
+    color: #3b82f6;
+    transform: scale(1.1);
+}
+
+.PhotosContainer {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+#CreateApplication-TsCategorySelect{
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    color: #334155;
+    background-color: #f8fafc;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#CreateApplication-TsCategorySelect:focus {
+    border-color: #3b82f6;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+#CreateApplication-PtoSelect{
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    color: #334155;
+    background-color: #f8fafc;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#CreateApplication-PtoSelect:focus{
+    border-color: #3b82f6;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+.UploadedPhotoCard {
+    position: relative;
+    width: 100px; 
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    box-sizing: border-box;
+    background: #f8fafc;
+}
+
+.UploadedPhotoCard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+.PhotoBadge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(2px);
+    color: #ffffff;
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+    padding: 4px 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+
+.BtnRemovePhoto {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s;
+    z-index: 10; 
+    padding: 0;
+}
+
+.BtnRemovePhoto:hover {
+    background: #ef4444; 
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+.UploadedDocCard {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+    .CreateApplication-AppCard {
+        width: calc(100vw - 16px);
+        max-width: none;
+        max-height: 92dvh;
+        border-radius: 16px;
+    }
+}

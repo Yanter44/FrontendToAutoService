@@ -1,0 +1,205 @@
+
+.DetailsSidebar {
+    background: white;
+    border-left: 1px solid #e2e8f0;
+    overflow-y: auto;
+    padding: 24px;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s ease;
+}
+
+.Workspace.SidebarOpen .DetailsSidebar {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.DetailsHeader {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.DetailsTabs {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 12px;
+    justify-content: center;
+}
+
+.Tab.Active {
+    font-weight: 700;
+}
+
+.TabLink {
+    color: #1a53ff;
+    cursor: pointer;
+}
+
+
+.TabContent {
+    display: none;
+}
+.TabContent.Active {
+    display: block;
+}
+
+.DetailsTabs span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    padding-bottom: 12px;
+    position: relative;
+    transition: color 0.2s ease, font-weight 0.2s ease;
+}
+
+.DetailsTabs span:hover {
+    color: #1a53ff;
+}
+
+.DetailsTabs span.Active {
+    font-weight: 700;
+    color: #1a53ff;
+}
+
+.DetailsTabs span.Active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; 
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #1a53ff;
+    border-radius: 2px;
+}
+
+.TabContent {
+    display: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.TabContent.Active {
+    display: block;
+}
+
+.TabContent.FadeIn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.SidebarInfoList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;    
+    gap: 10px;          
+}
+
+
+.SidebarInfoList .TsInfo {
+    display: flex;
+    width: calc(50% - 5px);
+    border: 1px solid #e2e8f0;
+    background: #FAFAFD;
+    box-sizing: border-box;
+    flex-direction: column;
+
+    padding: 10px;           
+    border-radius: 6px;     
+    font-size: 12px;
+    word-break: break-word;  
+    overflow-wrap: anywhere;  
+}
+
+.SidebarInfoList hr {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 10px 0;
+}
+
+.MediaSection {
+    margin-bottom: 20px;
+}
+
+.MediaSection h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #64748b;
+}
+
+.MediaGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.MediaCard {
+    display: block;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    transition: 0.2s;
+}
+
+.MediaCard:hover {
+    transform: translateY(-2px);
+    border-color: #1a53ff;
+}
+
+.MediaPreview {
+    height: 90px;
+    background-size: cover;
+    background-position: center;
+}
+
+.MediaLabel {
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+    color: #475569;
+}
+
+@media (max-width: 1024px) {
+    .DetailsSidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(100%, 420px);
+        z-index: 1800;
+        transform: translateX(110%);
+        opacity: 1;
+        pointer-events: none;
+        box-shadow: -12px 0 32px rgba(15, 23, 42, 0.16);
+    }
+
+    .Workspace.SidebarOpen .DetailsSidebar {
+        transform: translateX(0);
+        pointer-events: all;
+    }
+
+    .DetailsTabs {
+        gap: 16px;
+        overflow-x: auto;
+        justify-content: center;
+    }
+    .DetailsHeader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 24px;
+    }
+}
