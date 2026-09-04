@@ -227,24 +227,6 @@ body {
     text-align: center;
 }
 
-<<<<<<< HEAD
-
-=======
-.StatusYellow {
-    background: #fef3c7;
-    color: #d97706;
-}
-
-.StatusGreen {
-    background: #dcfce7;
-    color: #16a34a;
-}
-
-.StatusRed {
-    background: #fee2e2;
-    color: #dc2626;
-}
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 
 .NotificationBlock {
     position: relative;
@@ -313,7 +295,6 @@ body {
     color: #475569;
     white-space: nowrap;
 }
-<<<<<<< HEAD
 .PaginationButton,
 .PaginationNumber{
     min-width: 36px;
@@ -360,8 +341,6 @@ body {
     padding:0 4px;
     user-select:none;
 }
-=======
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 
 @media (max-width: 1024px) {
     .AgentPage {

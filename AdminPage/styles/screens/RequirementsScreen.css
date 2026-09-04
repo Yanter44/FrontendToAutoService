@@ -86,7 +86,6 @@
     cursor: pointer;
 }
 
-<<<<<<< HEAD
 .BtnRedactPhotoRequirement, .BtnDeletePhotoRequirement {
     display: inline-flex;
     align-items: center;
@@ -129,8 +128,6 @@
     background-color: #fef2f2;
     border-color: #ef4444;
 }
-=======
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 @media (max-width: 1024px) {
     #RequirementsToPhotoAndDocuments {
         padding: 16px;

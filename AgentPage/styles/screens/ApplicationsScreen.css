@@ -260,7 +260,6 @@
     align-items: center;
     gap: 10px;
 }
-<<<<<<< HEAD
 .ModerationStatus {
     background: #fef3c7;
     color: #d97706;
@@ -278,61 +277,6 @@
 .RejectedStatus {
     background: #fee2e2;
     color: #dc2626;
-=======
-
-.ApplicationsPaginationButton,
-.ApplicationsPaginationNumber{
-    min-width: 36px;
-    height: 36px;
-    border: 1px solid #e8edf5;
-    border-radius: 8px;
-    background: #fff;
-    color: #334155;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 6px 20px rgba(15, 23, 42, .05);
-    transition: background .2s, border-color .2s, color .2s, transform .15s, box-shadow .2s;
-}
-
-.ApplicationsPaginationButton:hover,
-.ApplicationsPaginationNumber:hover{
-    border-color:#4F7CFF;
-    color:#4F7CFF;
-    transform:translateY(-2px);
-    box-shadow:
-        0 10px 25px rgba(79,124,255,.15);
-}
-
-.ApplicationsPaginationButton:active,
-.ApplicationsPaginationNumber:active{
-    transform:translateY(0);
-}
-
-.ApplicationsPaginationNumber.Active{
-    background:#4F7CFF;
-    border-color:#4F7CFF;
-    color:white;
-    box-shadow:
-        0 10px 25px rgba(79,124,255,.30);
-}
-
-.ApplicationsPaginationDots{
-    color:#94a3b8;
-    font-size:18px;
-    padding:0 4px;
-    user-select:none;
-}
-
-.ApplicationsPaginationButton:disabled{
-    opacity:.45;
-    cursor:not-allowed;
-    transform:none;
-    box-shadow:none;
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 }
 @media (max-width: 1024px) {
     .ApplicationHeaderSection{
@@ -468,7 +412,6 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
-<<<<<<< HEAD
 @media(max-width: 1400px) {
     .ApplicationsMetric {
         position: relative;
@@ -493,5 +436,3 @@
     padding-left: 10px;
 }
 }
-=======
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb

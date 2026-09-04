@@ -393,7 +393,6 @@ body {
     overflow-y: auto;
     flex: 1;
 }
-<<<<<<< HEAD
 .PaginationButton,
 .PaginationNumber{
     min-width: 36px;
@@ -447,8 +446,6 @@ body {
     transform:none;
     box-shadow:none;
 }
-=======
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 
 @media (max-width: 1024px) {
     .AgentPage {

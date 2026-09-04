@@ -5,13 +5,7 @@ window.state = {
     notifications: [],
     uploadedFiles: [],
     MAX_PHOTOS: 8,
-<<<<<<< HEAD
    
-=======
-    ptos: [],
-    prompts: [],
-    users: [],
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
     availableRoles: [],
 
     applicationsResult: {
@@ -27,7 +21,6 @@ window.state = {
         totalApplicationsApprovedCount: null,
         totalApplicationsTodayCount: null
     },
-<<<<<<< HEAD
     usersResult: {
         items: [],
         page: 1,
@@ -51,9 +44,6 @@ window.state = {
         totalPages: 0
     },
 
-=======
-    
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
     redactUser: {
         userId: null,
         activeTab: null
@@ -63,7 +53,6 @@ window.state = {
     photorequirements: [],
     documentrequirements: [],
 
-<<<<<<< HEAD
     availableAgentsResult: {
         items: [],
         page: 1,
@@ -78,10 +67,6 @@ window.state = {
         totalCount: 0,
         totalPages: 0
     },
-=======
-    availableagents: [],
-    alltransactions: [],
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
     
     availableNeuronNetworks: [],
     selectedphoto: null,

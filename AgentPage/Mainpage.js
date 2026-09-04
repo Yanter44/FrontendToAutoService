@@ -14,25 +14,12 @@ const initApp = async () => {
         initDropdownResize();
         loader.next();
         initNotifications();
-<<<<<<< HEAD
         loader.next();
         initNotificationDropDown();
         loader.next();
         initDatePicker();
         loader.next();
         bindAllHandlers();
-=======
-        initNotificationDropDown();
-        loader.next();
-        initApplicationSidebarTabs();
-        initAddTsPhotoModal();
-        loader.next();
-        initAddTsDocumentModal();
-        initDatePicker();
-        loader.next();
-        initSidebarCloseOnOutsideClick();
-        initCreateApplicationModal();
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
         loader.next();
         await signalRClient.start();
         notificationHub.init();

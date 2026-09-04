@@ -199,7 +199,6 @@
     justify-content: flex-start;
     margin-bottom: 15px;
 }
-<<<<<<< HEAD
 .TransactionsPagination{
     margin-top: 10px;
     display: flex;
@@ -207,9 +206,6 @@
     align-items: center;
     gap: 10px;
 }
-=======
-
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 @media (max-width: 1024px) {
     .AccrualsSortSection {
         flex-wrap: wrap;

@@ -1,10 +1,7 @@
 window.state = {
-<<<<<<< HEAD
     page:  1,
     pageSize: 5,
 
-=======
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
     finances: {
         balance: null,
         debtlimit: null,
@@ -15,20 +12,14 @@ window.state = {
     
     uploadedPhotosStorage: [],
     uploadedDocsStorage: [],
-<<<<<<< HEAD
     
-=======
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
     uploadedFiles: [],
 
     MAX_PHOTOS: 8,
 
     vehicleCategories: [],
     ptos: [], 
-<<<<<<< HEAD
     
-=======
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
     applicationsResult: {
         items: [],
         page: 1,
@@ -43,7 +34,6 @@ window.state = {
     selectedDocFile: null,
     selectedPhotoFile: null,
 
-<<<<<<< HEAD
     financesHistoryResult: {
         items: [],
         page: 1,
@@ -51,8 +41,5 @@ window.state = {
         totalCount: 0,
         totalPages: 0
     },
-=======
-    financesHistory: [],
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
     
 };

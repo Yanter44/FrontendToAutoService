@@ -30,30 +30,6 @@ const positionNotificationModalDropDown = () => {
     ui.NotificationModalDropDown.style.left = `${rect.right + window.scrollX - ui.NotificationModalDropDown.offsetWidth}px`;
 };
 
-<<<<<<< HEAD
-=======
-const clearUploadedFilesContainers = () => {
-    uploadedPhotosStorage.length = 0;
-    uploadedDocsStorage.length = 0;
-    ui.CreateApplicationModalPhotosContainer?.querySelectorAll('.UploadedPhotoCard').forEach(card => card.remove());
-    ui.CreateApplicationModalDocumentsContainer?.querySelectorAll('.UploadedDocCard').forEach(card => card.remove());
-};
-
-
-const resetPhotoDropZone = () => {
-   ui.AddTsPhotoModalFileDropZone.innerHTML = `
-        <span class="DropZoneText">Кликните, чтобы выбрать файл</span>
-        <input type="file" id="AddTsPhotoModalPhotoInput" accept="image/*">
-   `;
-};
-
-const resetDocumentDropZone = () => {
-    ui.AddTsDocumentModalFileDropZone.innerHTML = `
-        <span class="DropZoneText"> Кликните, чтобы выбрать файл </span>
-        <input type="file" id="AddTsDocumentModalDocumentInput" accept=".pdf,.jpg,.jpeg,.png">`;
-};
-
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 const formatDate = (dateString) => {
     if (!dateString) return "—";
     const date = new Date(dateString);
@@ -88,7 +64,6 @@ const filterAndSort = ({items,searchValue,searchFields,sortValue,sortOptions}) =
         result.sort(sortFunction);
     }
     return result;
-<<<<<<< HEAD
 };
 
 const bindSortEvents = (select, searchInput, callback) => {
@@ -99,6 +74,3 @@ const bindSortEvents = (select, searchInput, callback) => {
         searchInput.oninput = callback;
     }
 };
-=======
-};
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb

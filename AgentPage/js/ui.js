@@ -36,10 +36,7 @@ window.ui = {
     AddTsDocumentModalOverlay: document.querySelector('.AddTsDocumentModalOverlay'),
     AddTsDocumentModalFileDropZone: document.querySelector('.AddTsDocumentModalFileDropZone'),
     AddTsDocumentModalDocumentTypeSelect: document.getElementById('AddTsDocumentModalDocumentTypeSelect'),
-<<<<<<< HEAD
     AddTsDocumentUploadModalOverlay: document.getElementById('DocumentUploadOverlay'),
-=======
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 
     AddTsPhotoModal: document.getElementById('AddTsPhotoModal'),
     AddTsPhotoCancelButton: document.querySelector('.AddTsPhotoCancelButton'),
@@ -48,10 +45,7 @@ window.ui = {
     AddTsPhotoModalFileInput: document.getElementById('AddTsPhotoModalPhotoInput'),
     AddTsPhotoModalFileDropZone: document.querySelector('.AddTsPhotoModalFileDropZone'),
     AddTsPhotoModalPhotoTypeSelect: document.getElementById('AddTsPhotoModalPhotoTypeSelect'),
-<<<<<<< HEAD
     AddTsPhotoUploadModalOverlay: document.getElementById('PhotoUploadOverlay'),
-=======
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 
     //Finances
     FinancesHistoryTableBody: document.querySelector('.FinanceHistoryTable tbody'),

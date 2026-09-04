@@ -7,7 +7,6 @@ const clearDropdownPosition = (element) => {
     element.style.right = '';
     element.style.width = '';
 };
-<<<<<<< HEAD
 const bindSortEvents = (select, searchInput, callback) => {
     if (select) {
         select.onchange = callback;
@@ -16,8 +15,6 @@ const bindSortEvents = (select, searchInput, callback) => {
         searchInput.oninput = callback;
     }
 };
-=======
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 
 const positionDropdown = () => {
     if (!ui.profileTrigger || !ui.profileDropdown) return;
@@ -41,78 +38,10 @@ const positionNotificationModalDropDown = () => {
     ui.NotificationModalDropDown.style.left = `${rect.right + window.scrollX - ui.NotificationModalDropDown.offsetWidth}px`;
 };
 
-<<<<<<< HEAD
-=======
-const closePhotoRequirementModal = () => { 
-    ui.AddNewPhotoRequirementModal.classList.remove('Active'); 
-};
-const closeApplicationSidebar = () => {
-    ui.Workspace.classList.remove('SidebarOpen');
-};
-
-const closeEditApplicationPhotoModal = () => {
-   ui.EditApplicationPhotoModal.classList.remove('Active');
-};
-
-const closeDocumentRequirementModal = () => {
-    ui.AddNewDocumentRequirementModal.classList.remove('Active');
-};
-const closeRedactPromptModal = () => {
-    ui.RedactPromptModal.classList.remove('Active');
-};
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 const closeDeletePromptModal = () => {
     ui.DeletePromptModal.classList.remove('Active');
 };
 
-<<<<<<< HEAD
-=======
-const closeRedactUserModal = () => {
-    ui.RedactUserModal.classList.remove('Active');
-};
-const closeDeleteUserModal = () => {
-   ui.DeleteUserModal.classList.remove('Active');
-};
-const closeNewPtoModal = () => { 
-    ui.AddNewPtoModal.classList.remove('Active'); 
-};
-const closeDeletePtoModal = () => {
-    ui.DeletePtoModal.classList.remove('Active');
-};
-const closeRedactPtoModal = () => {
-    ui.RedactPtoModal.classList.remove('Active');
-}
-const closeNewPromptModal = () => {
-    ui.AddNewPromptModal.classList.remove('Active');
-    if (ui.PromptTagInput) ui.PromptTagInput.value = '';
-    if (ui.PromptDescriptionInput) ui.PromptDescriptionInput.value = '';
-};
-
-const closeAccrualBalanceModal = () => {
-    ui.AccrualBalanceModal.classList.remove('Active');
-};
-
-const closeDeductBalanceModal = () => {
-    ui.DeductBalanceModal.classList.remove('Active');
-}
-const clearNewPhotoRequirementFields = () => {
-    ui.PhotoTypeRequirementInput.value = '';
-    ui.PhotoDisplayNameRequirementInput.value = '';
-    ui.PhotoIsRequiredRequirementInput.value = 'true'; 
-};
-
-const resetNewPtoForm = () => {
-    ui.PtoNameInput.value = '';
-    ui.PtoRsaInput.value = '';
-    ui.PtoAddressInput.value = '';
-    ui.PtoLatitudeInput.value = '';
-    ui.PtoLongtitudeInput.value = '';
-    ui.PtoLoginInput.value = '';
-    ui.PtoPasswordInput.value = '';
-    ui.PtoApiKeyInput.value = '';
-};
-
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
 const filterAndSort = ({items,searchValue,searchFields,sortValue,sortOptions}) => {
     let result = [...items];
     if(searchValue){

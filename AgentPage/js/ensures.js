@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 window.ensure = {
     async ensureAuthorized() {
         await customFetch(`${config.API_BASE}/Auth/Ping`, {
@@ -59,11 +58,3 @@ window.ensure = {
 
 
 
-=======
-async function ensureAuthorized() {
-    await customFetch(`${config.API_BASE}/Auth/Ping`, {
-        method: "GET",
-        credentials: "include"
-    });
-}
->>>>>>> 26b4badbb7705023b42224bb4cdc0c7ca2b00deb
