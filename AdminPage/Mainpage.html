@@ -255,7 +255,7 @@
                                             <svg class="SelectArrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <polyline points="6 9 12 15 18 9"></polyline> </svg>
                                         </div>
                                     </div>
-                                    <button class="BtnAddNewUser">+ Добавить</button>
+                                    <button class="BtnInviteNewUser">+ Добавить</button>
                                 </div>
 
                                 <table class="UsersTable">
@@ -1145,15 +1145,30 @@
             </div>
         </section>
 
-        <section id="AddNewUserModal" class="AddNewUserModalSection">
-            <div class="AddNewUserModalOverlay"></div>
+        <section id="InviteNewUserModal" class="InviteNewUserModalSection">
+            <div class="InviteNewUserModalOverlay"></div>
 
-            <div class="AddNewUserCard">
-                <div class="AddNewUserHeader">
-                    <h2>Добавить пользователя</h2>
+            <div class="InviteNewUserModalCard">
+                <div class="InviteNewUserModalHeader">
+                    <h2>Пригласить пользователя</h2>
                 </div>
             </div>
-
+            <div class="InviteNewUserModalContent">
+                <div class="InviteNewUserModalField">
+                    <label>Должность</label>
+                    <select>
+                        <option>Администратор</option>
+                        <option>Модератор</option>
+                    </select>
+                </div>
+                <div class="InviteNewUserModalField">
+                    <label>Email</label>
+                    <input type="text" id="NewUserEmailInput" class="InviteNewUserModalInput" placeholder="">
+                </div>
+            </div>
+            <div class="InviteNewUserModalFooter">
+                <button type="button" id="NewUserSubmitBtn" class="InviteNewUserSubmitButton">Подтвердить</button>
+            </div>
         </section>
 
         <section id="AddNewPromptModal" class="AddNewPromptSection">
@@ -1429,6 +1444,7 @@
     <script src="/AdminPage/js/renderers/neuronNetworksRenderer.js"></script>
     <script src="/AdminPage/js/renderers/modals/editApplicationPhotoRenderer.js"></script>
     <script src="/AdminPage/js/renderers/modals/redactUserModalRenderer.js"></script>
+    <script src="/AdminPage/js/renderers/modals/inviteNewUserRenderer.js"></script>
     
     <!-- Modals -->
     <script src="/AdminPage/js/handlers/modals/accrualModalHandlers.js"></script>
@@ -1441,6 +1457,7 @@
     <script src="/AdminPage/js/handlers/modals/newPromptModalHandlers.js"></script>
     <script src="/AdminPage/js/handlers/modals/newPtoModalHandlers.js"></script>
     <script src="/AdminPage/js/handlers/modals/newNeuronNetworkModalHandlers.js"></script>
+    <script src="/AdminPage/js/handlers/modals/inviteNewUserHandlers.js"></script>
     
     <script src="/AdminPage/js/handlers/modals/redactPtoModalHandlers.js"></script>
     <script src="/AdminPage/js/handlers/modals/redactUserModalHandlers.js"></script>

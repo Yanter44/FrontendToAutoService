@@ -13,8 +13,17 @@ window.ui = {
     ApplicationsTableBody: document.querySelector('.ApplicationsTable tbody'),
     ApplicationsSearchSortInput: document.getElementById('ApplicationsSearchSortInput'),
 
+
+    //Users
+    BtnInviteNewUser: document.querySelector('.BtnAddNewUser'),
+    
+    //InviteNewUserModal
+    InviteNewUserModal: document.getElementById(''),
+    InviteNewUserModalOverlay: document.querySelector('.InviteNewUserModalOverlay'),
+    
+
     // Prompt
-    BtnAddNewPrompt: document.querySelector('.BtnAddNewPrompt'),
+    BtnInviteNewUser: document.querySelector('.BtnAddNewPrompt'),
 
     AddNewPromptModal: document.getElementById('AddNewPromptModal'),
     AddNewPromptCloseBtn: document.getElementById('AddNewPromptCloseBtn'),

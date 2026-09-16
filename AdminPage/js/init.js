@@ -211,6 +211,7 @@ const bindAllHandlers = () => {
     bindNeuronNetworkHandlers();
     
     bindAccrualModalHandlers();
+    bindInviteUserModalHandlers();
     bindDocumentRequirementModalHandlers();
     bindEditPhotoRequirementHandlers();
     bindEditDocumentRequirementHandlers();

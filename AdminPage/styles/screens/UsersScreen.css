@@ -87,7 +87,7 @@
     justify-content: space-between;
 }
 
-.BtnAddNewUser {
+.BtnInviteNewUser {
     border: none;
     background: #1a53ff;
     color: white;
@@ -98,7 +98,7 @@
     transition: 0.2s;
 }
 
-.BtnAddNewUser:hover{
+.BtnInviteNewUser:hover{
     background: #003fe0;
 }
 .UsersSortSelect:hover .SelectArrow{
@@ -231,7 +231,6 @@
     align-items: center;
     gap: 10px;
 }
-
 @media (max-width: 1024px) {
     .UsersTable thead {
         display: none;
