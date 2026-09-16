@@ -23,7 +23,7 @@ window.ui = {
     
 
     // Prompt
-    BtnInviteNewUser: document.querySelector('.BtnAddNewPrompt'),
+    BtnAddNewPrompt: document.querySelector('.BtnAddNewPrompt'),
 
     AddNewPromptModal: document.getElementById('AddNewPromptModal'),
     AddNewPromptCloseBtn: document.getElementById('AddNewPromptCloseBtn'),
