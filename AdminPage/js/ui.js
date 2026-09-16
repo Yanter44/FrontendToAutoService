@@ -70,6 +70,9 @@ window.ui = {
     BtnAddNewPhotoRequirement: document.querySelector('.PhotoRequirementsAddButton'),
     BtnAddNewDocumentRequirement: document.querySelector('.DocumentRequirementsAddButton'),
 
+    PhotoRequirementsTableBody: document.getElementById('PhotoRequirementsTableBody'),
+    DocumentRequirementsTableBody: document.getElementById('DocumentRequirementsTableBody'),
+
     AddNewPhotoRequirementSubmitButton: document.querySelector('.AddNewPhotoRequirementSubmitButton'),
     AddNewDocumentRequirementSubmitButton: document.querySelector('.AddNewDocumentRequirementSubmitButton'),
 
@@ -78,6 +81,16 @@ window.ui = {
 
     AddNewDocumentRequirementModal: document.getElementById('AddNewDocumentRequirementModal'),
     AddNewDocumentRequirementOverlay: document.querySelector('.AddNewDocumentRequirementOverlay'),
+    
+    EditPhotoRequirementModal: document.getElementById('EditPhotoRequirementModal'),
+    EditPhotoRequirementOverlay: document.querySelector('.EditPhotoRequirementModalOverlay'),
+
+    EditDocumentRequirementModal: document.getElementById('EditDocumentRequirementModal'),
+    EditDocumentRequirementOverlay: document.querySelector('.EditDocumentRequirementModalOverlay'),
+
+    DeleteDocumentRequirementModal: document.getElementById('DeleteDocumentRequirementModal'),
+    DeletePhotoRequirementModal: document.getElementById('DeletePhotoRequirementModal'),
+
     
     PhotoRequirementsTableBody: document.getElementById('PhotoRequirementsTableBody'),
     DocumentRequirementsTableBody: document.getElementById('DocumentRequirementsTableBody'),
@@ -90,6 +103,26 @@ window.ui = {
     DocumentDisplayNameRequirementInput: document.getElementById('DocumentDisplayNameRequirementInput'),
     DocumentIsRequiredRequirementInput: document.getElementById('DocumentIsRequiredRequirementInput'),
 
+    //NeuronNetworks
+    AddNewNeuronNetworkModal: document.getElementById('AddNewNeuronNetworkModal'),
+    BtnAddNeuronNetwork: document.querySelector('.BtnAddNeuronNetwork'),
+
+    AddNewNeuronNetworkModalOverlay: document.querySelector('.AddNewNeuronNetworkModalOverlay'),
+    AddNewNeuronNetworkSubmitButton: document.querySelector('.AddNewNeuronNetworkSubmitButton'),
+    NeuronNetworkNameInput: document.getElementById('NeuronNetworkNameInput'),
+    NeuronNetworkLinkInput: document.getElementById('NeuronNetworkLinkInput'),
+
+    RedactNeuronNetworkModal: document.getElementById('RedactNeuronNetworkModal'),
+    RedactNeuronNetworkModalOverlay: document.querySelector('.RedactNeuronNetworkModalOverlay'),
+    BtnSubmitRedactNeuronNetwork: document.querySelector('.BtnSubmitRedactNeuronNetwork'),
+    RedactNeuronNetworkNameInput: document.getElementById('RedactNeuronNetworkNameInput'),
+    RedactNeuronNetworkLinkInput: document.getElementById('RedactNeuronNetworkLinkInput'),
+
+    DeleteNeuronNetworkModal: document.getElementById('DeleteNeuronNetworkModal'),
+    DeleteNeuronNetworkModalOverlay: document.querySelector('.DeleteNeuronNetworkModalOverlay'),
+    DeleteNeuronNetworkModalWarningSpan: document.querySelector('.DeleteNeuronNetworkModalWarningSpan'),
+    BtnSubmitDeleteNeuronNetwork: document.querySelector('BtnSubmitDeleteNeuronNetwork'),
+    
     //Accruals/Deducts
     BtnAccrualToBalance: document.querySelector('.BtnAccrualToBalance'),
     AccrualBalanceModal: document.getElementById('AccrualBalanceModal'),
@@ -142,8 +175,30 @@ window.ui = {
     EditApplicationPhotoOverlay: document.querySelector('.EditApplicationPhotoOverlay'),
     EditApplicationPhotoTagsInput: document.getElementById('EditApplicationPhotoTagsInput'),
 
-    BtnSubmitGeneratePhoto: document.querySelector('.BtnSubmitGeneratePhoto'), //GENERATE
-    BtnSubmitGeneratedPhoto: document.querySelector('.BtnSubmitGeneratedPhoto'), //GENERAT-ED
+    BtnSubmitGeneratePhoto: document.querySelector('.BtnSubmitGeneratePhoto'), 
+    BtnSubmitConfirmGeneratedPhoto: document.querySelector('.BtnSubmitConfirmGeneratedPhoto'),
+
+    //RedactUserModal
+    RedactUserModalDropdown: document.querySelector('.RedactUserModalDropdown'),
+    RedactUserModalCurrentUserRoleName: document.getElementById('RedactUserModalCurrentUserRoleName'),
+    RedactUserModalUserRegDate: document.getElementById('RedactUserModalUserRegDate'),
+    RedactUserModalCurrentUserDebitLimit: document.getElementById('RedactUserModalCurrentUserDebitLimit'),
+    RedactUserModalBtnSubmit: document.getElementById('RedactUserModalBtnSubmit'),
+
+    RedactUserModalLeftMenu: document.querySelector('.RedactUserModalLeftMenu'),
+    RedactUserModalLeftItems: document.querySelectorAll('.RedactUserModalLeftItem'),
+    RedactUserModalRightContents: document.querySelectorAll('.RedactUserModalRightContent'),
+
+    RedactUserModalCurrentUserStatus: document.getElementById('RedactUserModalCurrentUserStatus'),
+
+    RedactUserModalBlockingReasonSelect: document.getElementById('RedactUserModalBlockingReasonSelect'),
+    RedactUserModalBlockingCommentInput: document.getElementById('RedactUserModalBlockingCommentInput'),
+
+    RedactUserModalNewCreditLimitInput: document.getElementById('RedactUserModalNewCreditLimitInput'),
+    RedactUserModalPresets: document.querySelectorAll('.RedactUserModalRightPreset'),
+
+    RedactUserModalBlockHistoryBody: document.getElementById('RedactUserModalBlockHistoryBody'),
+    RedactUserModalBlockHistoryCount: document.getElementById('RedactUserModalBlockHistoryCount'),
 
     //UsersTable
     BtnsRedactUser: document.querySelectorAll('.BtnRedactUser'),

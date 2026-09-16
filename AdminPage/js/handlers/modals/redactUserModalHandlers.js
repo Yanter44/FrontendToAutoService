@@ -1,140 +1,185 @@
 const bindRedactUserModalHandlers = () => {
-    ui.RedactUserModalOverlay?.removeEventListener('click', closeRedactUserModal);
-    ui.RedactUserModalOverlay?.addEventListener('click', closeRedactUserModal);
+    const bind = (el, event, handler) => {
+        el?.removeEventListener(event, handler);
+        el?.addEventListener(event, handler);
+    };
 
-    const leftMenu = document.querySelector('.RedactUserModalLeftMenu');
-    if (leftMenu) {
-        leftMenu.removeEventListener('click', handleLeftMenuClick);
-        leftMenu.addEventListener('click', handleLeftMenuClick);
-    }
+    bind(ui.RedactUserModalOverlay, 'click', closeRedactUserModal);
+    bind(ui.RedactUserModalLeftMenu, 'click', handleLeftMenuClick);
+    bind(ui.RedactUserModalBtnSubmit, 'click', handleSubmitRedactUser);
 
-    const roleDropdown = document.getElementById('RoleDropdown');
-    if (roleDropdown) {
-        roleDropdown.removeEventListener('click', handleRoleDropdownClick);
-        roleDropdown.addEventListener('click', handleRoleDropdownClick);
-    }
+    // Делегирование для пресетов — вешаем на контейнер, а не на каждую кнопку
+    const presetsContainer = document.querySelector('.RedactUserModalRightPresets');
+    bind(presetsContainer, 'click', handleDebtLimitPresetClick);
 
-    const submitButton = document.getElementById('RedactUserModalBtnSubmit');
-    if (submitButton) {
-        submitButton.removeEventListener('click', handleSubmitRedactUser);
-        submitButton.addEventListener('click', handleSubmitRedactUser);
-    }
+    bind(ui.RedactUserModalNewCreditLimitInput, 'input', handleDebtLimitInput);
 };
+
 
 const openRedactUserModal = async (id) => {
     const user = state.usersResult.items.find(x => x.userId === Number(id));
-    if (!user) {
-        console.error("Пользователь не найден:", id);
-        return;
-    }
+    if (!user) return console.error('Пользователь не найден:', id);
 
-    state.redactUser.userId = user.userId;
-    state.redactUser.activeTab = 'userRoleChangeContent';
+    Object.assign(state.redactUser, {
+        userId: user.userId,
+        user,
+        activeTab: 'userRoleChangeContent',
+        blockHistory: []
+    });
 
     ui.RedactUserModal.classList.add('Active');
 
-    await ensure.availableroles();
-    
-    const normalrolenameuser = getNormalRoleName(user.role);
-    const normaluserregdate = dateTimeFormatter.formatDate(user.regDate);
-    
-    renderCurrentRoleInRedactUserModal(normalrolenameuser);
-    renderUserRegDateInRedactUserModal(normaluserregdate);
-    renderAvailableRoles();
-    
-    if (user.role !== "Admin" && user.role !== "Moderator") {
-        renderUserDebtLimitValue(user.debtLimit);
+    try {
+        await ensure.availableroles();
+        await loadUserBlockHistory(user.userId);
+    } catch (error) {
+        console.error('Не удалось открыть модалку:', error);
     }
+
+    renderAccountInfo(user);
+    renderTab('userRoleChangeContent');
+    renderSubmitButton();
 };
 
 const closeRedactUserModal = () => {
     ui.RedactUserModal.classList.remove('Active');
+
+    Object.assign(state.redactUser, {
+        userId: null,
+        user: null,
+        activeTab: 'userRoleChangeContent',
+        blockHistory: []
+    });
+
+    if (ui.RedactUserModalBlockingReasonSelect) ui.RedactUserModalBlockingReasonSelect.value = '';
+    if (ui.RedactUserModalBlockingCommentInput) ui.RedactUserModalBlockingCommentInput.value = '';
+    if (ui.RedactUserModalNewCreditLimitInput) ui.RedactUserModalNewCreditLimitInput.value = '';
+
+    clearActive(ui.RedactUserModalPresets);
+
+    renderTab('userRoleChangeContent');
+    renderSubmitButton();
 };
+
 
 const handleLeftMenuClick = (e) => {
     const row = e.target.closest('.RedactUserModalLeftItem');
     if (!row) return;
 
-    document.querySelectorAll('.RedactUserModalLeftItem').forEach(item => {
-        item.classList.remove('Active');
-    });
+    const tab = row.dataset.redactusermodalLefttab;
+    state.redactUser.activeTab = tab;
 
-    row.classList.add('Active');
-
-    const target = row.dataset.redactusermodalLefttab;
-    state.redactUser.activeTab = target;
-    console.log("сейчас находимся тут -> " + target);
-    
-    document.querySelectorAll('.RedactUserModalRightContent').forEach(content => {
-        content.classList.remove('Active');
-    });
-
-    document.querySelector(`[data-content="${target}"]`)?.classList.add('Active');
+    renderTab(tab);
+    renderSubmitButton();
 };
 
-const handleRoleDropdownClick = (e) => {
-    const roleDropdown = document.getElementById('RoleDropdown');
-    const selectedRole = document.getElementById('SelectedRole');
+const handleDebtLimitPresetClick = (e) => {
+    const btn = e.target.closest('.RedactUserModalRightPreset');
+    if (!btn || !ui.RedactUserModalNewCreditLimitInput) return;
 
-    if (!roleDropdown || !selectedRole) return;
+    ui.RedactUserModalNewCreditLimitInput.value = btn.dataset.value || '0';
 
-    const item = e.target.closest('.RedactUserModalDropdownItem');
-
-    if (item) {
-        selectedRole.textContent = getNormalRoleName(item.dataset.value);
-        selectedRole.dataset.roleId = item.dataset.id;
-
-        roleDropdown.classList.remove('Active');
-        e.stopPropagation();
-        return;
-    }
-
-    roleDropdown.classList.toggle('Active');
+    clearActive(ui.RedactUserModalPresets);
+    btn.classList.add('Active');
 };
 
+const handleDebtLimitInput = (e) => {
+    e.target.value = e.target.value.replace(/\D/g, '');
+
+    const value = e.target.value;
+    ui.RedactUserModalPresets.forEach(btn => {
+        btn.classList.toggle('Active', btn.dataset.value === value);
+    });
+};
 
 const handleSubmitRedactUser = async () => {
-    const userId = state.redactUser.userId;
-    const activeTab = state.redactUser.activeTab;
-
-    console.log('Подтверждение изменений');
-    console.log('User ID:', userId);
-    console.log('Активная вкладка:', activeTab);
+    const { userId, activeTab } = state.redactUser;
+    if (!userId) return;
 
     try {
-        switch (activeTab) {
-            case 'userRoleChangeContent':
-                await submitUserRoleChange(userId);
-                break;
-
-            case 'userDebtLimit':
-                await submitUserDebtLimitChange(userId);
-                break;
-
-            case 'userStatusChangeContent':
-                await submitUserStatusChange(userId);
-                break;
-
-            default:
-                console.error('Неизвестная вкладка:', activeTab);
+        if (activeTab === 'userDebtLimit') {
+            await submitUserDebtLimitChange(userId);
+        } else if (activeTab === 'userStatusChangeContent') {
+            await submitUserStatusChange(userId);
         }
     } catch (error) {
         console.error('Ошибка при сохранении:', error);
-        alert('Ошибка при сохранении изменений');
+        alert(error.message || 'Ошибка при сохранении изменений');
     }
 };
 
+const submitUserDebtLimitChange = async (userId) => {
+    const raw = ui.RedactUserModalNewCreditLimitInput?.value?.trim();
+    if (!raw) throw new Error('Введите новый лимит');
+
+    const newLimit = Number(raw);
+    if (Number.isNaN(newLimit) || newLimit < 0) throw new Error('Введите корректный лимит');
+    console.log(newLimit);
+    console.log(userId);
+    //const result = await userService.changeUserDebtLimit({ userId: userId, debtLimit: newLimit});
+
+    const user = state.usersResult.items.find(x => x.userId === userId);
+    if (user) user.debtLimit = newLimit;
+
+    renderUsersTable(state.usersResult.items);
+    closeRedactUserModal();
+};
+
+const submitUserStatusChange = async (userId) => {
+    const isBlocked = state.redactUser.blockHistory.some(h => h.isActive);
+
+    if (isBlocked) {
+        const reason = ui.RedactUserModalBlockingCommentInput?.value.trim();
+        if (!reason) throw new Error('Укажите причину разблокировки');
+
+        await userService.unblockUser({ unblockUserId: userId, unblockReason: reason });
+    } else {
+        const select = ui.RedactUserModalBlockingReasonSelect;
+        if (!select.value) throw new Error('Выберите причину блокировки');
+
+        const comment = ui.RedactUserModalBlockingCommentInput?.value.trim();
+        const reasonText = select.options[select.selectedIndex].text;
+        const fullReason = comment ? `${reasonText}: ${comment}` : reasonText;
+
+        await userService.blockUser({
+            blockUserId: userId,
+            reason: fullReason,
+            blockUntil: null
+        });
+    }
+
+    await loadUserBlockHistory(userId);
+    renderSubmitButton();
+};
+
+const loadUserBlockHistory = async (userId) => {
+    try {
+        const response = await userService.getUserBlockHistory(userId);
+        const history = response.data || [];
+
+        state.redactUser.blockHistory = history;
+
+        renderUserBlockStatus(history.some(h => h.isActive));
+        renderUserBlockHistory(history);
+
+        if (state.redactUser.activeTab === 'userStatusChangeContent') {
+            renderSubmitButton();
+        }
+    } catch (error) {
+        console.error('Не удалось загрузить историю:', error);
+        renderUserBlockHistory([]);
+    }
+};
 
 const getNormalRoleName = (roleName) => {
-    switch(roleName){
-        case "Admin":
-            return "Администратор"
-            break;
-        case "Moderator":
-            return "Модератор";
-            break;
-        case "Agent":
-            return "Агент";
-            break;
-    }
+    const map = {
+        Admin: 'Администратор',
+        Moderator: 'Модератор',
+        Agent: 'Агент'
+    };
+    return map[roleName] || roleName;
+};
+
+const clearActive = (nodes) => {
+    nodes.forEach(n => n.classList.remove('Active'));
 };

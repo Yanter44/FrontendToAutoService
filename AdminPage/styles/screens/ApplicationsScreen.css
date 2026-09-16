@@ -268,17 +268,21 @@
     font-weight: 700;
 }
 
-.StatusYellow {
+.ModerationStatus {
     background: #fef3c7;
     color: #d97706;
 }
+.ProcessingStatus {
+    background: #c7eafe;
+    color: #067fd9;
+}
 
-.StatusGreen {
+.ApprovedStatus {
     background: #dcfce7;
     color: #16a34a;
 }
 
-.StatusRed {
+.RejectedStatus {
     background: #fee2e2;
     color: #dc2626;
 }

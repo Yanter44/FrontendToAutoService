@@ -3,6 +3,7 @@ const renderPhotoRequirementsTable = async (photoRequirements) => {
     ui.PhotoRequirementsTableBody.innerHTML = '';
     photoRequirements.forEach(item => {
         const row = document.createElement('tr');
+        row.dataset.requirementId = item.id; 
         row.innerHTML = `
             <td>${item.photoType}</td>
             <td>${item.displayName}</td>
@@ -31,6 +32,7 @@ const renderDocumentRequirementsTable = async (documentRequirements) => {
     ui.DocumentRequirementsTableBody.innerHTML = '';
     documentRequirements.forEach(item => {
         const row = document.createElement('tr');
+        row.dataset.requirementId = item.id; 
         row.innerHTML = `
             <td>${item.documentType}</td>
             <td>${item.displayName}</td>

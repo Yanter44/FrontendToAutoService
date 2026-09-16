@@ -69,7 +69,11 @@
     position:relative;
     width:240px;
 }
-
+.CreateApplication-RowInfo{
+    border-bottom: 1px dashed #e2e8f0;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
 .ApplicationsSortSelect select {
     width:100%;
     height: 48px;

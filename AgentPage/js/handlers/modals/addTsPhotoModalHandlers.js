@@ -87,6 +87,8 @@ const savePhoto = async () => {
         `;
         ui.CreateApplicationModalUploadWrapper?.insertAdjacentHTML('beforebegin', photoCardHTML);
         closePhotoModal();
+        console.log("Все фотографии в хранилище");
+        console.log(state.uploadedPhotosStorage);
     } catch (error) {
         alert('Ошибка загрузки фото: ' + error.message);
     } finally {

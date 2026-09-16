@@ -21,6 +21,7 @@ const ui = {
     FioInput: document.getElementById('FIOInput'),
     FIOSubmitBtn: document.getElementById('FIOSubmitBtn'),
 };
+
 const regAuthdata = {
     registrationId: null,
     fio: null,

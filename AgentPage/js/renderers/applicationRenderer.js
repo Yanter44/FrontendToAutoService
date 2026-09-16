@@ -16,7 +16,7 @@ const renderApplicationsTable = (applications, totalCount) => {
                 <td style="text-transform: capitalize;">${carInfo}</td>
                 <td title="${app.vin || ''}" style="font-family: monospace;">${vinShort}</td>
                 <td>${app.fio || '—'}</td>
-                <td>${getStatusBadgeHtml(app.status)}</td>
+                <td>${getApplicationStatusBadgeHtml(app.status)}</td>
                 <td>${formatDate(app.createdAt)}</td>
             </tr>
         `;
@@ -97,7 +97,7 @@ const renderPtos = (ptos, categoryId) => {
     ui.CreateApplicationPtoSelect.innerHTML = optionsHTML;
 };
 
-const getStatusBadgeHtml = (status) => {
+const getApplicationStatusBadgeHtml = (status) => {
     switch (status) {
         case "Moderated":
             return '<span class="StatusBadge ModerationStatus">На модерации</span>';
@@ -180,7 +180,18 @@ const fillApplicationVehicleTab = (app) => {
         </div>
     `;
 };
-
+const getStatusBadgeHtml = (status) => {
+    switch (status) {
+        case "Moderated":
+            return '<span class="StatusBadge StatusYellow">На модерации</span>';
+        case "Confirmed":
+            return '<span class="StatusBadge StatusGreen">Одобрено</span>';
+        case "Rejected":
+            return '<span class="StatusBadge StatusRed">Отклонено</span>';
+        default:
+            return `<span class="StatusBadge">${status}</span>`;
+    }
+};
 const fillApplicationMediaTab = (app) => {
     const el = document.getElementById('Tab-MediaData');
     if (!el) return;

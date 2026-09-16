@@ -43,12 +43,14 @@ window.state = {
         totalCount: 0,
         totalPages: 0
     },
-
+    
     redactUser: {
         userId: null,
-        activeTab: null
+        user: null,
+        activeTab: null,
+        blockHistory: [],
+        blockHistoryLoaded: false
     },
-
     vehicleCategories: [],
     photorequirements: [],
     documentrequirements: [],
@@ -60,6 +62,16 @@ window.state = {
         totalCount: 0,
         totalPages: 0
     },
+    
+    neuronNetworksResult: {
+        items: [],
+        page: 1,
+        pageSize: 5,
+        totalCount: 0,
+        totalPages: 0
+    },
+    allNeuronNetworks: [], 
+
     transactionsResult: {
         items: [],
         page: 1,
@@ -67,8 +79,7 @@ window.state = {
         totalCount: 0,
         totalPages: 0
     },
-    
-    availableNeuronNetworks: [],
+    generatedphotobyai: null,  
     selectedphoto: null,
     selectedApplication: null,
     photoTagsTagify: null,

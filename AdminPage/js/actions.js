@@ -43,7 +43,23 @@ window.actions = {
             alert('Не удалось добавить ПТО');
         }
     },
+    submitNewNeuronNetwork: async () => {
+        const model = {
+            name: ui.NeuronNetworkNameInput.value.trim(),
+            link: ui.NeuronNetworkLinkInput.value.trim(),
+        };
 
+        const isSuccess = await neuronNetworkService.addNewNeuronNetwork(model);
+
+        if (isSuccess) {
+            state.neuronNetworksResult = {
+                items: [], page: 1, pageSize: 5, totalCount: 0, totalPages: 0
+            };
+            state.allNeuronNetworks = [];
+        }
+
+        return isSuccess;
+    },
     submitNewPhotoRequirement: async () => {
         const photoType = ui.PhotoTypeRequirementInput.value.trim();
         const displayName = ui.PhotoDisplayNameRequirementInput.value.trim();
@@ -147,11 +163,13 @@ window.actions = {
         const isSuccess = await ptoService.deletePto(ptoid);
     },
 
-    generatePhoto: async(model) => {
-        const isSuccess = await neuronNetworkService.generatePhoto(model);
+    submitGeneratePhoto: async(model) => {
+        const base64image = await neuronNetworkService.generatePhoto(model);
+        console.log(base64image);
+        return base64image;
     },
-    
-    submitGeneratedPhoto: async(model) => {
-        const isSuccess = null;
+    submitGeneratedPhotoByAi: async(model) => {
+        const result = await neuronNetworkService.confirmGeneratedPhotoByAI(model);
+        console.log(result); 
     },
 };

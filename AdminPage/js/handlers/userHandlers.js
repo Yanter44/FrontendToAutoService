@@ -15,7 +15,6 @@ const initUsersTable = () => {
     });
 };
 
-
 const handleRedactUserClick = (e) => {
     const button = e.currentTarget;
     const row = button.closest('.UserTableRow');
@@ -26,7 +25,22 @@ const handleRedactUserClick = (e) => {
         openRedactUserModal(userId);
     }
 };
+const filterAndSortUsers = () => {
+    const searchInput = document.getElementById("UsersSearchSortInput");
+    const select = document.querySelector(".UsersSortSelect select");
 
+    const searchValue = searchInput.value.toLowerCase().trim();
+    const sortValue = select.value;
+
+    const result = filterAndSort({
+        items: state.users,
+        searchValue,
+        searchFields: usersSortConfig.searchFields,
+        sortValue,
+        sortOptions: usersSortConfig.sortOptions
+    });
+    renderUsersTable(result);
+};
 const handleDeleteUserClick = (e) => {
     const button = e.currentTarget;
     const row = button.closest('.UserTableRow');

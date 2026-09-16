@@ -21,11 +21,7 @@ const closePhotoRequirementModal = () => {
     clearNewPhotoRequirementFields();
 };
 
-// ============================================
-// ОБРАБОТЧИК ПОДТВЕРЖДЕНИЯ
-// ============================================
 const handleSubmitPhotoRequirement = async () => {
-    // Валидация
     const type = ui.PhotoTypeRequirementInput?.value?.trim();
     const displayName = ui.PhotoDisplayNameRequirementInput?.value?.trim();
     const isRequired = ui.PhotoIsRequiredRequirementInput?.value === 'true';
@@ -45,7 +41,7 @@ const handleSubmitPhotoRequirement = async () => {
     try {
         await actions.submitNewPhotoRequirement();
         closePhotoRequirementModal();
-        // Обновляем таблицу требований
+        
         if (typeof refreshPhotoRequirementsTable === 'function') {
             await refreshPhotoRequirementsTable();
         }
@@ -55,9 +51,6 @@ const handleSubmitPhotoRequirement = async () => {
     }
 };
 
-// ============================================
-// ОЧИСТКА ПОЛЕЙ
-// ============================================
 const clearNewPhotoRequirementFields = () => {
     if (ui.PhotoTypeRequirementInput) ui.PhotoTypeRequirementInput.value = '';
     if (ui.PhotoDisplayNameRequirementInput) ui.PhotoDisplayNameRequirementInput.value = '';

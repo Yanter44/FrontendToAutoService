@@ -1,42 +1,41 @@
-.PtosScreen{
+.NeuronNetworksScreen{
     height: 100%;
     overflow-y: auto;
     min-height: 0;
 }
-.PtosScreen::-webkit-scrollbar {
+.NeuronNetworksScreen::-webkit-scrollbar {
     width: 4px;            
 }
-.PtosScreen::-webkit-scrollbar-track {
+
+.NeuronNetworksScreen::-webkit-scrollbar-track {
     background: transparent;       
 }
 
-.PtosScreen::-webkit-scrollbar-thumb {
+.NeuronNetworksScreen::-webkit-scrollbar-thumb {
     background: #b8d4e3;        
     border-radius: 20px;           
     transition: all 0.3s ease;
 }
 
-.PtosScreen::-webkit-scrollbar-thumb:hover {
+.NeuronNetworksScreen::-webkit-scrollbar-thumb:hover {
     background: #7eb8d4;         
 }
 
-.PtosScreen::-webkit-scrollbar-thumb:active {
+.NeuronNetworksScreen::-webkit-scrollbar-thumb:active {
     background: #5ba3c4;        
 }
 
-.PtosScreen::-webkit-scrollbar-corner {
+.NeuronNetworksScreen::-webkit-scrollbar-corner {
     background: transparent;
 }
-.PtoTable {
+.NeuronNetworksTable{
     width: 100%;
     background: white;
     border-collapse: collapse;
     border-radius: 14px;
     overflow: hidden;
-    table-layout: fixed;
 }
-
-.PtoTable th {
+.NeuronNetworksTable th {
     background: #f8fafc;
     text-align: center;
     padding: 16px 20px;
@@ -45,22 +44,14 @@
     border-bottom: 1px solid #e2e8f0;
 }
 
-.PtoTable td {
-    text-align: center;
+.NeuronNetworksTable td {
     padding: 18px 20px;
     font-size: 14px;
+    text-align: center;
     border-bottom: 1px solid #edf2f7;
-    word-wrap: break-word;
-    word-break: break-all; 
-    white-space: normal;
 }
-.PtoActionsWrapper{
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: center;
-}
-.BtnAddNewPto {
+
+.BtnAddNeuronNetwork{
     border: none;
     background: #1a53ff;
     color: white;
@@ -70,52 +61,11 @@
     font-weight: 700;
     transition: 0.2s;
 }
-
-.BtnAddNewPto:hover{
+.BtnAddNeuronNetwork:hover{
     background: #003fe0;
 }
 
-.BtnRedactPto, 
-.BtnDeletePto {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    
-    width: 44px;  
-    height: 36px;
-    
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;      
-    
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: all 0.2s ease-in-out; 
-}
-
-.BtnRedactPto:hover {
-    background-color: #f0fafd; 
-    border-color: #3b82f6;    
-}
-
-.BtnDeletePto:hover {
-    background-color: #fef2f2; 
-    border-color: #ef4444;  
-}
-
-.BtnRedactPto:active,
-.BtnDeletePto:active {
-    transform: scale(0.96); 
-}
-
-.PtosSortSelect:hover .SelectArrow{
-    color:#4F7CFF;
-}
-
-.PtosSortSelect:focus-within .SelectArrow{
-    color:#4F7CFF;
-}
-.PtosSearchSort{
+.NeuronNetworksSearchSort{
     width: 380px;
     height: 48px;
     display: flex;
@@ -129,53 +79,60 @@
     transition: .25s;
 }
 
-.PtosSearchSort:hover{
+.NeuronNetworksSearchSort:hover{
     border-color:#cfd8e6;
 }
 
-.PtosSearchSort:focus-within{
+.NeuronNetworksSearchSort:focus-within{
     border-color:#4F7CFF;
     box-shadow:
-        0 0 0 4px rgba(79,124,255,.12),
-        0 10px 25px rgba(79,124,255,.12);
+    0 0 0 4px rgba(79,124,255,.12),
+    0 10px 25px rgba(79,124,255,.12);
 }
 
-.PtosSearchSort svg{
+.NeuronNetworksSearchSort svg{
     width:20px;
     height:20px;
     fill:#9ca3af;
     flex-shrink:0;
 }
 
-.PtosSearchSort input{
+.NeuronNetworksSearchSort input{
     flex:1;
-
+    
     border:none;
     outline:none;
-
+    
     background:transparent;
-
+    
     font-size:15px;
     color:#1f2937;
 }
 
-.PtosSearchSort input::placeholder{
+.NeuronNetworksSearchSort input::placeholder{
     color:#9ca3af;
 }
+.NeuronNetworksSortSelect:hover .SelectArrow{
+    color:#4F7CFF;
+}
 
-.PtosSortSelect {
+.NeuronNetworksSortSelect:focus-within .SelectArrow{
+    color:#4F7CFF;
+}
+
+
+.NeuronNetworksSortSelect {
     position:relative;
     width:240px;
 }
-
-.PtosSortSection {
+.NeuronNetworksSortSection {
     display: flex;
     gap: 10px;
     justify-content: flex-start;
     margin-bottom: 15px;
 }
 
-.PtosSortSelect select {
+.NeuronNetworksSortSelect select {
     width:100%;
     height: 48px;
     padding:0 48px 0 18px;
@@ -198,34 +155,88 @@
         transform .15s;
 }
 
-.PtosSortSelect select:hover{
+.NeuronNetworksSortSelect select:hover{
     border-color:#d5deeb;
 }
 
-.PtosSortSelect select:focus{
+.NeuronNetworksSortSelect select:focus{
     border-color:#4F7CFF;
     box-shadow:
         0 0 0 4px rgba(79,124,255,.12),
         0 10px 25px rgba(79,124,255,.12);
 }
-.PtoHeaderSection{
+.NeuronNetworksHeaderSection{
     display: flex;
+    gap:10px;
     align-items: flex-start;
     justify-content: space-between;
 }
-.PtosPagination{
+.NeuronNetworksHeaderButtons{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+.NeuronNetworksPagination{
     margin-top: 10px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 10px;
 }
+.BtnRedactNeuronNetwork, 
+.BtnDeleteNeuronNetwork {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 44px;  
+    height: 36px;
+    
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;      
+    
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out; 
+}
+
+.BtnRedactNeuronNetwork:hover {
+    background-color: #f0fafd; 
+    border-color: #3b82f6;    
+}
+
+.BtnDeleteNeuronNetwork:hover {
+    background-color: #fef2f2; 
+    border-color: #ef4444;  
+}
+
+.BtnRedactNeuronNetwork:active,
+.BtnDeleteNeuronNetwork:active {
+    transform: scale(0.96); 
+}
+
 @media (max-width: 1024px) {
-    .PtoTable thead {
+    .NeuronNetworksSortSection {
+        flex-wrap: wrap;
+    }
+
+    .NeuronNetworksSearchSort,
+    .NeuronNetworksSortSelect {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .NeuronNetworksTable {
+        table-layout: fixed;
+        width: 100%;
+    }
+    .NeuronNetworksTable thead {
         display: none;
     }
 
-    .PtoTable tbody tr {
+    .NeuronNetworksTable tbody tr {
         display: block;
         background: white;
         border-radius: 16px;
@@ -236,19 +247,11 @@
         transition: all 0.2s ease;
     }
 
-    .PtoTable tbody tr:active {
+    .NeuronNetworksTable tbody tr:active {
         transform: scale(0.98);
     }
 
-    .PtoHeaderSection {
-        flex-direction: column;
-        gap: 12px;
-        display: flex;
-        margin-bottom: 16px;
-        align-items: center;
-    }
-    
-    .PtoTable tbody td {
+    .NeuronNetworksTable tbody td {
         display: block;
         align-items: center;
         padding: 8px 0;
@@ -259,13 +262,13 @@
         word-break: break-word;
     }
 
-    .PtoTable tbody td:last-child {
+    .NeuronNetworksTable tbody td:last-child {
         border-bottom: none;
         padding-top: 12px;
         justify-content: flex-start;
     }
 
-    .PtoTable tbody td::before {
+    .NeuronNetworksTable tbody td::before {
         content: attr(data-label);
         font-weight: 600;
         color: #64748b;
@@ -276,44 +279,51 @@
         letter-spacing: 0.5px;
     }
 
-    .PtoTable tbody td {
+    .NeuronNetworksTable tbody td {
         background: transparent !important;
     }
 
-    .PtoTable tbody td:last-child {
+    .NeuronNetworksTable tbody td:last-child {
         gap: 8px;
     }
 
-    .PtoTable tbody td:last-child .BtnRedactPrompt,
-    .PtoTable tbody td:last-child .BtnDeletePrompt {
+    .NeuronNetworksTable tbody td:last-child .BtnRedactPrompt,
+    .NeuronNetworksTable tbody td:last-child .BtnDeletePrompt {
         width: 40px;
         height: 36px;
     }
 
-    .PtoTable {
+    .NeuronNetworksTable {
         background: transparent;
         border-radius: 0;
         overflow: visible;
     }
 
-
-    .PtosSortSection {
+    .NeuronNetworksSortSection {
         flex-direction: column;
         width: 100%;
         gap: 10px;
     }
+     
+    .NeuronNetworksHeaderSection {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 16px;
+        align-items: center;
+    }
 
-    .PtosSearchSort {
+    .NeuronNetworksSearchSort {
         width: 100%;
         max-width: 100%;
         height: 44px;
     }
 
-    .PtosSortSelect {
+    .NeuronNetworksSortSelect {
         width: 100%;
     }
 
-    .PtosSortSelect select {
+    .NeuronNetworksSortSelect select {
         height: 44px;
     }
 
@@ -321,7 +331,8 @@
         padding: 12px;
     }
 
-    .PtosScreen {
+    .NeuronNetworksScreen {
         padding: 0;
     }
+
 }

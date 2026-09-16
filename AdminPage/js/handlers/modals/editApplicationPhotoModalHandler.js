@@ -27,8 +27,8 @@ const openEditApplicationPhotoModal = (photo) => {
     ui.BtnSubmitGeneratePhoto.removeEventListener('click', handleGeneratePhoto);
     ui.BtnSubmitGeneratePhoto.addEventListener('click', handleGeneratePhoto);
     
-    ui.BtnSubmitGeneratedPhoto.removeEventListener('click', handleSubmitGeneratedPhoto);
-    ui.BtnSubmitGeneratedPhoto.addEventListener('click', handleSubmitGeneratedPhoto);
+    ui.BtnSubmitConfirmGeneratedPhoto.removeEventListener('click', handleSubmitGeneratedPhoto);
+    ui.BtnSubmitConfirmGeneratedPhoto.addEventListener('click', handleSubmitGeneratedPhoto);
 };
 
 const closeEditApplicationPhotoModal = () => {
@@ -42,25 +42,44 @@ const handleGeneratePhoto = async () => {
     }
 
     const selectedPromptIds = state.photoTagsTagify.value.map(t => t.promptId);
-    const selectedAiId = Number(ui.EditApplicationPhotoNeuronNetworkSelect.value);
+    const select = ui.EditApplicationPhotoNeuronNetworkSelect;
+    const neuronNetworkId = select.value;
 
-    if (!selectedAiId) {
+    if (neuronNetworkId === null || neuronNetworkId === undefined || neuronNetworkId === '') {
         alert('Выберите нейросеть');
         return;
     }
 
+    const selectedAiId = Number(neuronNetworkId);
+    
     const generatephotomodel = {
         applicationId: state.selectedApplication.id,
         photoId: state.selectedPhoto.id,
-        AiProvider: selectedAiId,
+        neuronNetworkId: selectedAiId,
         promptsIds: selectedPromptIds,
     };
-    
-    await actions.generatePhoto(generatephotomodel);
+    try {
+        ui.BtnSubmitGeneratePhoto.disabled = true;
+        ui.BtnSubmitConfirmGeneratedPhoto.disabled = true;
+        renderGeneratedPhoto(null, { isLoading: true });
+        const result = await actions.submitGeneratePhoto(generatephotomodel);
+        state.generatedphotobyai = result.data.imageBase64;
+        renderGeneratedPhoto(state.generatedphotobyai);
+    } finally {
+        ui.BtnSubmitGeneratePhoto.disabled = false;
+        ui.BtnSubmitConfirmGeneratedPhoto.disabled = false;
+    }
 };
 
 const handleSubmitGeneratedPhoto = async () => {
-    await actions.submitGeneratedPhoto();
+    
+    const confirmGeneratedPhotoModel = {
+       applicationId: state.selectedApplication.id,
+       photoId: state.selectedPhoto.id,
+       imageBase64: state.generatedphotobyai
+    };
+    
+    await actions.submitGeneratedPhotoByAi(confirmGeneratedPhotoModel);
 };
 
 const handleEditPhotoButtonClick = async (e) => {
@@ -84,9 +103,9 @@ const handleEditPhotoButtonClick = async (e) => {
     }
 
     await ensure.prompts();
-    await ensure.neuronNetworks();
+    await ensure.allNeuronNetworks();
     
-    renderNeuronNetworks();
+    renderNeuronNetworks(state.allNeuronNetworks);
 
     const input = ui.EditApplicationPhotoTagsInput;
     const suggestions = state.promptsResult.items.map(p => ({

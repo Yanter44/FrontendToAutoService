@@ -38,9 +38,19 @@ window.ensure = {
         }
     },
     async neuronNetworks() {
-        if(state.availableNeuronNetworks && state.availableNeuronNetworks.length > 0)
-            return;
-        state.availableNeuronNetworks = await neuronNetworkService.getAvailableNeuronNetworks();
+        if(state.neuronNetworksResult.items.length === 0){
+            const result = await neuronNetworkService.getNeuronNetworks(state.page,state.pageSize);
+            state.neuronNetworksResult = result.data;
+            console.log(state.neuronNetworksResult);
+        }
+    },
+    async allNeuronNetworks(){
+        if (!state.allNeuronNetworks || state.allNeuronNetworks.length === 0) {
+                const result = await neuronNetworkService.getAllNeuronNetworks();
+                state.allNeuronNetworks = result.data ?? [];
+                console.log(result.data);
+                console.log(state.allNeuronNetworks);
+            }
     },
     async availableroles(){
         if(state.availableRoles && state.availableRoles.length > 0)
@@ -61,5 +71,4 @@ window.ensure = {
             console.log(state.transactions);
         }
     }
-
 };

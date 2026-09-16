@@ -19,15 +19,18 @@ const renderApplicationsTable = (applications) => {
     `).join('');
 };
 
-
 const getApplicationStatusBadgeHtml = (status) => {
     switch (status) {
         case "Moderated":
-            return '<span class="StatusBadge StatusYellow">На модерации</span>';
+            return '<span class="StatusBadge ModerationStatus">На модерации</span>';
         case "Confirmed":
-            return '<span class="StatusBadge StatusGreen">Одобрено</span>';
+            return '<span class="StatusBadge ApprovedStatus">Одобрено</span>';
         case "Rejected":
-            return '<span class="StatusBadge StatusRed">Отклонено</span>';
+            return '<span class="StatusBadge RejectedStatus">Отклонено</span>';
+        case "Processing":
+            return '<span class="StatusBadge ProcessingStatus">Обрабатывается</span>';
+        case "Error":
+            return '<span class="StatusBadge RejectedStatus">Ошибка</span>';
         default:
             return `<span class="StatusBadge">${status}</span>`;
     }
@@ -47,7 +50,6 @@ const bindApplicationsTableEvents = () => {
         openApplicationSidebar(app);
     });
 };
-
 
 const filterAndSortApplications = () => {
     const searchInput = document.getElementById("ApplicationsSearchSortInput");
@@ -96,17 +98,23 @@ const fillApplicationSidebarHeader = (app) => {
 
     badge.className = 'StatusBadge';
 
-    if (app.status === "Moderated") {
-        badge.classList.add('StatusYellow');
+     if (app.status === "Moderated") {
+        badge.classList.add('ModerationStatus');
         badge.textContent = 'На модерации';
     } else if (app.status === "Confirmed") {
-        badge.classList.add('StatusGreen');
+        badge.classList.add('ApprovedStatus');
         badge.textContent = 'Одобрено';
     } else if (app.status === "Rejected") {
-        badge.classList.add('StatusRed');
+        badge.classList.add('RejectedStatus');
         badge.textContent = 'Отклонено';
+    } else if (app.status === "Processing") {
+        badge.classList.add('ProcessingStatus');
+        badge.textContent = 'Обрабатывается...';
+    } else if (app.status === "Error") {
+        badge.classList.add('RejectedStatus');
+        badge.textContent = `Ошибка: ${app.errorMessage || 'Неизвестная ошибка'}`;
     } else {
-        badge.textContent = app.status;
+        badge.textContent = app.status || 'Неизвестно';
     }
 };
 

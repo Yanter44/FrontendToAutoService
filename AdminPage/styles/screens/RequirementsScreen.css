@@ -1,3 +1,29 @@
+
+.RequirementsToPhotoAndDocumentsScreen::-webkit-scrollbar {
+    width: 4px;            
+}
+
+.RequirementsToPhotoAndDocumentsScreen::-webkit-scrollbar-track {
+    background: transparent;       
+}
+
+.RequirementsToPhotoAndDocumentsScreen::-webkit-scrollbar-thumb {
+    background: #b8d4e3;        
+    border-radius: 20px;           
+    transition: all 0.3s ease;
+}
+
+.RequirementsToPhotoAndDocumentsScreen::-webkit-scrollbar-thumb:hover {
+    background: #7eb8d4;         
+}
+
+.RequirementsToPhotoAndDocumentsScreen::-webkit-scrollbar-thumb:active {
+    background: #5ba3c4;        
+}
+
+.RequirementsToPhotoAndDocumentsScreen::-webkit-scrollbar-corner {
+    background: transparent;
+}
 .RequirementsToPhotoAndDocumentsScreen{
     height: 100%;
     overflow-y: auto;

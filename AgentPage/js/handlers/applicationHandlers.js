@@ -107,20 +107,22 @@ const handleCreateApplication = async (e) => {
         email: document.getElementById("CreateApplication-Email")?.value.trim() || "",
         phoneNumber: document.getElementById("CreateApplication-PhoneNumber")?.value.trim() || "",
         ptoId: Number(ui.CreateApplicationPtoSelect.value) || 0,
-        photoUrls: state.uploadedPhotosStorage?.map(p => p.url) || [],
-        documentUrls: state.uploadedDocsStorage?.map(d => d.url) || [],
-        photoTypes: state.uploadedPhotosStorage?.map(p => p.type) || [],
-        documentTypes: state.uploadedDocsStorage?.map(d => d.type) || []
+        documentFiles: state.uploadedDocsStorage?.map(d => ({
+            type: d.type,
+            documentUrl: d.url
+        })) || [],
+        vehiclePhotos: state.uploadedPhotosStorage?.map(p => ({
+            vehiclePhotoType: p.type,
+            photoUrl: p.url
+        })) || []
     };
-    console.log("вот модель ниже");
-    console.log(model);
+
+    console.log("Модель заявки:", model);
 
     try {
         ui.CreateApplicationCreateButton.disabled = true;
         ui.CreateApplicationCreateButton.textContent = "Сохранение...";
-
-        const formData = actions.createApplicationFormData(model);
-        const isSuccess = await applicationService.createNewApplication(formData);
+        const isSuccess = await applicationService.createNewApplication(model);
         if (isSuccess) {
             closeCreateApplicationModal();
             resetCreateApplicationForm();
@@ -359,3 +361,4 @@ const openApplicationSidebar = (app) => {
 const closeApplicationSidebar = () => {
     ui.Workspace?.classList.remove('SidebarOpen');
 };
+

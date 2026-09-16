@@ -1,7 +1,7 @@
 window.userService = {
     async getAllUsersExcept(currentuserid) {
-        try{
-            const response = await customFetch(`${config.API_BASE}/User/GetAllUsersExcept`,{
+        try {
+            const response = await customFetch(`${config.API_BASE}/User/GetAllUsersExcept`, {
                 method: "GET",
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -9,7 +9,7 @@ window.userService = {
             const result = await response.json();
             return result;
         }
-        catch(error){
+        catch (error) {
             console.log(error);
         }
     },
@@ -27,7 +27,7 @@ window.userService = {
             console.log(error);
         }
     },
-    async getUsers(page, pageSize){
+    async getUsers(page, pageSize) {
         try {
             const response = await customFetch(`${config.API_BASE}/User/GetUsers?page=${page}&pageSize=${pageSize}`, {
                 method: "GET",
@@ -41,7 +41,7 @@ window.userService = {
             console.log(error);
         }
     },
-    async getAllAgents(){
+    async getAllAgents() {
         try {
             const response = await customFetch(`${config.API_BASE}/User/GetAllAgents`, {
                 method: "GET",
@@ -51,7 +51,7 @@ window.userService = {
             const result = await response.json();
             return result;
         }
-        catch(error){
+        catch (error) {
             console.log(error);
         }
     },
@@ -65,12 +65,12 @@ window.userService = {
             const result = await response.json();
             return result;
         }
-        catch(error){
+        catch (error) {
             console.error(error);
         }
-   
+
     },
-    async getAvailableRoles(){
+    async getAvailableRoles() {
         try {
             const response = await customFetch(`${config.API_BASE}/User/GetAvailableRoles`, {
                 method: "GET",
@@ -80,8 +80,53 @@ window.userService = {
             const result = await response.json();
             return result;
         }
-        catch(error){
+        catch (error) {
             console.error(error);
         }
     },
+    async getUserBlockHistory(userId) {
+        try {
+            const response = await customFetch(`${config.API_BASE}/User/GetUserBlocksHistory?userId=${userId}`,{ 
+                method: 'GET', 
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include' 
+            });
+            
+            const result = await response.json();
+            console.log(result);
+            return result;
+        } catch (error) {
+            console.error('Ошибка загрузки истории блокировок:', error);
+        }
+    },
+    async blockUser(blockUserModel) {
+        try {
+            const response = await customFetch(`${config.API_BASE}/User/BlockUser`,{
+                method: 'POST',
+                credentials: 'include',
+                body: JSON.stringify(blockUserModel)
+            });
+            const result = await response.json();
+            console.log(result);
+            return result;
+        } catch(error) {
+            console.error(error);     
+        }
+    },
+    async changeUserDebtLimit(changeuserdebtlimitModel) {
+        try {
+            const response = await customFetch(`${config.API_BASE}/User/ChangeUserDebtLimit`,{
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify(changeuserdebtlimitModel)
+            });
+            const result = await response.json();
+            console.log(result);
+            return result;
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
 }

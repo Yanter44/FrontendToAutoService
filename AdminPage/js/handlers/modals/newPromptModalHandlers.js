@@ -18,16 +18,11 @@ const openNewPromptModal = () => {
 
 const closeNewPromptModal = () => {
     ui.AddNewPromptModal.classList.remove('Active');
-    // Очищаем поля
     if (ui.PromptTagInput) ui.PromptTagInput.value = '';
     if (ui.PromptDescriptionInput) ui.PromptDescriptionInput.value = '';
 };
 
-// ============================================
-// ОБРАБОТЧИК ПОДТВЕРЖДЕНИЯ СОЗДАНИЯ ПРОМПТА
-// ============================================
 const handleSubmitNewPrompt = async () => {
-    // Валидация
     const tag = ui.PromptTagInput?.value?.trim();
     const description = ui.PromptDescriptionInput?.value?.trim();
 
@@ -46,7 +41,6 @@ const handleSubmitNewPrompt = async () => {
     try {
         await actions.submitNewPrompt();
         closeNewPromptModal();
-        // Обновляем таблицу промптов
         if (typeof refreshPromptsTable === 'function') {
             await refreshPromptsTable();
         }

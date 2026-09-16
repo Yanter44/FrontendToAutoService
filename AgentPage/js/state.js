@@ -42,4 +42,11 @@ window.state = {
         totalPages: 0
     },
     
+    financeFilters: {
+        dateFrom: null,  
+        dateTo: null,   
+        status: null,    
+        type: null,     
+    },
+    
 };

@@ -61,7 +61,7 @@ const openDeletePromptModal = (id) => {
     ui.DeletePromptModalOverlay.addEventListener('click', () => {
         closeDeletePromptModal();
     });
-    const deletetablePrompt = state.prompts.find(prompt => prompt.promptId == id);
+    const deletetablePrompt = state.promptsResult.items.find(prompt => prompt.promptId == id);
     const deletePromptTag = deletetablePrompt.tag;
 
     ui.DeletePromptModalWarningContentSpan.innerHTML = `Вы действительно хотите удалить промпт "${deletePromptTag}"?`;

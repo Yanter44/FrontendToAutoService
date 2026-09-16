@@ -28,7 +28,6 @@ window.paginationManager = {
                 </button>
             `;
 
-            // "Умные" точки, как у вас было
             if (totalPages <= 7) {
                 for (let i = 1; i <= totalPages; i++) {
                     html += `
@@ -73,7 +72,6 @@ window.paginationManager = {
 
             el.innerHTML = html;
 
-            // Делегирование через события на каждой кнопке
             el.querySelectorAll('[data-page]').forEach(btn => {
                 btn.addEventListener('click', function () {
                     const page = Number(this.dataset.page);
@@ -84,7 +82,6 @@ window.paginationManager = {
             });
         }
 
-        // Загружаем первую страницу сразу
         load(1);
 
         return {

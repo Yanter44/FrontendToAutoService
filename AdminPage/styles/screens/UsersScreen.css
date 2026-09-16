@@ -29,6 +29,7 @@
     background: transparent;
 }
 
+
 .UsersTable {
     width: 100%;
     background: white;
@@ -80,7 +81,26 @@
     color: #7c1890;
 }
 
+.UserHeaderSection{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
 
+.BtnAddNewUser {
+    border: none;
+    background: #1a53ff;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.BtnAddNewUser:hover{
+    background: #003fe0;
+}
 .UsersSortSelect:hover .SelectArrow{
     color:#4F7CFF;
 }
@@ -88,6 +108,7 @@
 .UsersSortSelect:focus-within .SelectArrow{
     color:#4F7CFF;
 }
+
 .UsersSearchSort{
     width: 380px;
     height: 48px;
@@ -210,6 +231,7 @@
     align-items: center;
     gap: 10px;
 }
+
 @media (max-width: 1024px) {
     .UsersTable thead {
         display: none;
@@ -258,6 +280,14 @@
         letter-spacing: 0.5px;
     }
 
+    .UserHeaderSection {
+        flex-direction: column;
+        gap: 12px;
+        display: flex;
+        margin-bottom: 16px;
+        align-items: center;
+    }
+    
     .UsersTable tbody td {
         background: transparent !important;
     }

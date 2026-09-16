@@ -29,30 +29,28 @@ window.applicationService = {
             console.error(error);
         }
     },
-    async createNewApplication(formData) {
+    async createNewApplication(model) {
         try {
             const response = await customFetch(`${config.API_BASE}/Application/CreateNewApplication`, {
                 method: "POST",
                 credentials: "include",
-                body: formData
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(model)
             });
 
-            console.log('Response status:', response.status);
-            console.log('Response ok:', response.ok);
-
             if (response.ok) {
-                const data = await response.json();
-                console.log('✅ Успех:', data);
                 return true;
             }
 
-            const errorData = await response.json();
-            console.log('❌ Ошибка:', errorData);
-            return false;
+            const errorData = await response.json().catch(() => null);
+            const message = errorData?.message || `Ошибка ${response.status}`;
+            throw new Error(message);
 
         } catch (error) {
-            console.error('Ошибка в createNewApplication:', error);
-            return false;
+            console.error("Ошибка в createNewApplication:", error);
+            throw error;
         }
     }
 }

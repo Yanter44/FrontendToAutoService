@@ -25,13 +25,13 @@ const usersPagination = new PaginationManager({
     onPageChange: async (page) => {
         const result = await userService.getUsers(page, 15);
         state.usersResult = result.data;
-        renderUsersTable(result.data.items);
+        renderUsersTable(state.usersResult.items);
         
         usersPagination.setData({
-            items: result.data.items,
-            totalCount: result.data.totalCount,
-            page: result.data.page,
-            pageSize: result.data.pageSize
+            items: state.usersResult.items,
+            totalCount: state.usersResult.totalCount,
+            page: state.usersResult.page,
+            pageSize: state.usersResult.pageSize
         });
     }
 });
@@ -64,13 +64,31 @@ const promptsPagination = new PaginationManager({
     onPageChange: async (page) => {
         const result = await promptService.getPrompts(page, 5);
         state.promptsResult = result.data;
-        renderPromptsTable(result.data.items);
+        renderPromptsTable(state.promptsResult.items);
         
         promptsPagination.setData({
-            items: result.data.items,
-            totalCount: result.data.totalCount,
-            page: result.data.page,
-            pageSize: result.data.pageSize
+            items: state.promptsResult.items,
+            totalCount: state.promptsResult.totalCount,
+            page: state.promptsResult.page,
+            pageSize: state.promptsResult.pageSize
+        });
+    }
+});
+
+const neuronNetworksPagination = new PaginationManager({
+    container: document.querySelector('.NeuronNetworksPagination'),
+    pageSize: 5,
+    currentPage: 1,
+    tableName: "neuronNetworks",
+    onPageChange: async (page) => {
+        const result = await neuronNetworkService.getNeuronNetworks(page, 10);
+        state.neuronNetworksResult  = result.data;
+        renderNeuronNetworksTable(state.neuronNetworksResult.items);
+        neuronNetworksPagination.setData({
+            items: state.neuronNetworksResult.items,
+            totalCount: state.neuronNetworksResult.totalCount,
+            page: state.neuronNetworksResult.page,
+            pageSize: state.neuronNetworksResult.pageSize
         });
     }
 });
@@ -83,12 +101,12 @@ const transactionsPagination = new PaginationManager({
     onPageChange: async (page) => {
         const result = await paymentService.getTransactions(page, 10);
         state.transactionsResult = result.data;
-        renderTransactionsTable(result.data.items);
+        renderTransactionsTable(state.transactionsResult.items);
         transactionsPagination.setData({
-            items: result.data.items,
-            totalCount: result.data.totalCount,
-            page: result.data.page,
-            pageSize: result.data.pageSize
+            items: state.transactionsResult.items,
+            totalCount: state.transactionsResult.totalCount,
+            page: state.transactionsResult.page,
+            pageSize: state.transactionsResult.pageSize
         });
     }
 });
@@ -97,4 +115,5 @@ window.applicationsPagination = applicationsPagination;
 window.usersPagination = usersPagination;
 window.ptosPagination = ptosPagination;
 window.promptsPagination = promptsPagination;
+window.neuronNetworksPagination = neuronNetworksPagination;
 window.transactionsPagination = transactionsPagination;

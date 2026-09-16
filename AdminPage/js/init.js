@@ -139,7 +139,7 @@ const initNavigation = () => {
                                    document.getElementById("UsersSearchSortInput"),
                                    filterAndSortUsers);
                     break;
-                case 'ptos': 
+                case 'ptos':
                     await ensure.ptos();
                     await ptosPagination.loadPage(1);
                     bindSortEvents(document.querySelector(".PtosSortSelect select"),
@@ -165,6 +165,11 @@ const initNavigation = () => {
                     await renderDocumentRequirementsTable(state.documentrequirements);
                     break;
 
+                case 'neuronNetworks':
+                    await ensure.neuronNetworks();
+                    await neuronNetworksPagination.loadPage(1);
+                    
+                    break;
                 case 'accruals':
                     await ensure.allAgents();
                     await ensure.transactions();
@@ -199,17 +204,19 @@ const initNavigation = () => {
 };
 
 const bindAllHandlers = () => {
-    console.log('🔄 Биндинг всех обработчиков...');
     bindApplicationSidebarHandlers();
     bindUserHandlers();
     bindPtoHandlers();
     bindPromptHandlers();
-
-    // Модалки
+    bindNeuronNetworkHandlers();
+    
     bindAccrualModalHandlers();
     bindDocumentRequirementModalHandlers();
+    bindEditPhotoRequirementHandlers();
+    bindEditDocumentRequirementHandlers();
     bindPhotoRequirementModalHandlers();
     bindDeductModalHandlers();
+    bindAddNewNeuronNetworkModalHandlers();
     bindEditApplicationPhotoModalHandlers();
     bindPromptModalHandlers();
     bindPtoModalHandlers();

@@ -32,6 +32,25 @@ window.requirementService = {
             return null;
         }
     },
+    async editPhotoRequirement(model) {
+        try {
+            const response = await customFetch(`${config.API_BASE}/Requirements/EditPhotoRequirement`,{
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify(model),
+            });
+            if(!response.ok){
+                console.error(`Ошибка сервера: ${response.status}`);
+                return null;
+            }
+            const result = await response.json();
+            return result;
+        } catch(error) {
+            console.error('Ошибка при изменении требования:', error)
+            return null;
+        }
+    },
     async deletephotorequirement(photoRequirementId) {
         try {
             const response = await customFetch(`${config.API_BASE}/Requirements/DeletePhotoRequirement?photoRequirementId=${photoRequirementId}`, {
@@ -73,6 +92,25 @@ window.requirementService = {
         catch(error){
             console.error(error);
         }  
+    },
+    async editDocumentRequirement(model) {
+        try {
+            const response = await customFetch(`${config.API_BASE}/Requirements/EditDocumentRequirement`,{
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify(model)
+            });
+            if(!response.ok){
+                console.error(`Ошибка сервера: ${response}`);
+                return null;
+            }
+            const result = await response.json();
+            return result;
+        }
+        catch(error){
+            console.error(error);
+        }
     },
     async deletedocumentrequirement(documentrequirementid){
         try {

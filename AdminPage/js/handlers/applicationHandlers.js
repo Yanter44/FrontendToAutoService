@@ -34,12 +34,15 @@ const handleSidebarTabClick = (e) => {
     }
 };
 
-const handleSidebarOutsideClick  = () => {
+const handleSidebarOutsideClick = () => {
     document.addEventListener('click', (e) => {
         const isOpen = ui.Workspace.classList.contains('SidebarOpen');
         if (!isOpen) return;
 
-        const sidebar = document.querySelector('.DetailsSidebar');
+        // Не закрываем sidebar, если открыта модалка редактирования фото
+        const isEditPhotoModalOpen = ui.EditApplicationPhotoModal?.classList.contains('Active');
+        if (isEditPhotoModalOpen) return;
+
         const clickedInsideSidebar = e.target.closest('.DetailsSidebar');
         const clickedRow = e.target.closest('.ApplicationTableRow');
 
