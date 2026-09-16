@@ -53,7 +53,7 @@ const handleSubmitDeduct = async () => {
         agentId: agentId,
         amount: amount,
         comment: comment,
-        idempotencyKey: crypto.randomUUID()
+        idempotencyKey: generateUUID()
     };
 
     try {
