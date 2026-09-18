@@ -17,9 +17,7 @@ const renderTransactionsTable = (transactions) => {
         row.innerHTML = `
             <td>${transaction.externalId}</td>
             <td>${transaction.agentName}</td>
-            <td class="${amountClass}">
-                ${amountSign}${transaction.amount.toLocaleString('ru-RU')} ₽
-            </td>
+            <td class="${amountClass}"> ${amountSign}${transaction.amount.toLocaleString('ru-RU')} ₽</td>
             <td>${transaction.description ?? '-'}</td>
             <td>${new Date(transaction.createdAt).toLocaleString('ru-RU')}</td> `;
 

@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="Mainpage.css">
     <link rel="stylesheet" href="styles/Loader.css">
+    <link rel="stylesheet" href="/Common/CSS/Toast.css">
+
     <!-- Modals -->
     <link rel="stylesheet" href="styles/modals/AddTsPhotoModal.css">
     <link rel="stylesheet" href="styles/modals/AddTsDocumentModal.css">
@@ -387,6 +389,7 @@
                                         <tr>
                                             <th>№ Изображения</th> 
                                             <th>Название</th>
+                                            <th>Действия</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -609,8 +612,8 @@
                         <button class="BtnSubmitDeleteUser">Удалить</button>
                     </div>
                 </div>
-                </div>
-                </section>
+            </div>
+        </section>
                 
         <section id="RedactUserModal" class="RedactUserModalSection">
             <div class="RedactUserModalOverlay"></div>
@@ -1447,6 +1450,7 @@
     <script src="../apifetch.js"></script>
     <script src="/utils.js"></script>
     <script src="../LibVendors/Signal/signalR.js"></script>
+    <script src="/Common/JS/CommonManagers/Toast.js"></script>
 
     <script src="/Common/JS/ApiServices/AuthService.js"></script>
     <script src="/Common/JS/ApiServices/AdminService.js"></script>

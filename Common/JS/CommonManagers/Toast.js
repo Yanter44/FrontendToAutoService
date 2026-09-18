@@ -11,7 +11,6 @@ const Toast = (() => {
         return container;
     }
 
-    // SVG-иконки по типам
     const icons = {
         success: '✔',
         error:   '✖',
