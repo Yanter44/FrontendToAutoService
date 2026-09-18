@@ -1,0 +1,329 @@
+.LibraryOfPhotosScreen{
+    height: 100%;
+    overflow-y: auto;
+    min-height: 0;
+}
+.LibraryOfPhotosScreen::-webkit-scrollbar {
+    width: 4px;            
+}
+.LibraryOfPhotosScreen::-webkit-scrollbar-track {
+    background: transparent;       
+}
+
+.LibraryOfPhotosScreen::-webkit-scrollbar-thumb {
+    background: #b8d4e3;        
+    border-radius: 20px;           
+    transition: all 0.3s ease;
+}
+
+.LibraryOfPhotosScreen::-webkit-scrollbar-thumb:hover {
+    background: #7eb8d4;         
+}
+
+.LibraryOfPhotosScreen::-webkit-scrollbar-thumb:active {
+    background: #5ba3c4;        
+}
+
+.LibraryOfPhotosScreen::-webkit-scrollbar-corner {
+    background: transparent;
+}
+.PhotoGalleryTable {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    border-radius: 14px;
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+.PhotoGalleryTable th {
+    background: #f8fafc;
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: #64748b;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.PhotoGalleryTable td {
+    text-align: center;
+    padding: 18px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid #edf2f7;
+    word-wrap: break-word;
+    word-break: break-all; 
+    white-space: normal;
+}
+
+.PhotoGalleryActionsWrapper{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.BtnAddNewPhoto {
+    border: none;
+    background: #1a53ff;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.BtnAddNewPhoto:hover{
+    background: #003fe0;
+}
+
+.BtnRedactPhoto, 
+.BtnDeletePhoto {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 44px;  
+    height: 36px;
+    
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;      
+    
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out; 
+}
+
+.BtnRedactPhoto:hover {
+    background-color: #f0fafd; 
+    border-color: #3b82f6;    
+}
+
+.BtnDeletePhoto:hover {
+    background-color: #fef2f2; 
+    border-color: #ef4444;  
+}
+
+.BtnRedactPhoto:active,
+.BtnDeletePhoto:active {
+    transform: scale(0.96); 
+}
+
+.PhotoGallerySortSelect:hover .SelectArrow{
+    color:#4F7CFF;
+}
+
+.PhotoGallerySortSelect:focus-within .SelectArrow{
+    color:#4F7CFF;
+}
+.PhotoGallerySearchSort{
+    width: 380px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 18px;
+    background: #fff;
+    border: 1px solid #e8edf5;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, .05);
+    transition: .25s;
+}
+
+.PhotoGallerySearchSort:hover{
+    border-color:#cfd8e6;
+}
+
+.PhotoGallerySearchSort:focus-within{
+    border-color:#4F7CFF;
+    box-shadow:
+        0 0 0 4px rgba(79,124,255,.12),
+        0 10px 25px rgba(79,124,255,.12);
+}
+
+.PhotoGallerySearchSort svg{
+    width:20px;
+    height:20px;
+    fill:#9ca3af;
+    flex-shrink:0;
+}
+
+.PhotoGallerySearchSort input{
+    flex:1;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    font-size:15px;
+    color:#1f2937;
+}
+
+.PhotoGallerySearchSort input::placeholder{
+    color:#9ca3af;
+}
+
+.PhotoGallerySortSelect {
+    position:relative;
+    width:240px;
+}
+
+.PhotoGallerySortSection {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.PhotoGallerySortSelect select {
+    width:100%;
+    height: 48px;
+    padding:0 48px 0 18px;
+    border:1px solid #e8edf5;
+    border-radius:16px;
+    background:#fff;
+    font-size:15px;
+    font-weight:500;
+    color:#1f2937;
+    cursor:pointer;
+    outline:none;
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    box-shadow: 0 6px 20px rgba(15,23,42,.05);
+    transition:
+        border-color .25s,
+        box-shadow .25s,
+        transform .15s;
+}
+
+.PhotoGallerySortSelect select:hover{
+    border-color:#d5deeb;
+}
+
+.PhotoGallerySortSelect select:focus{
+    border-color:#4F7CFF;
+    box-shadow:
+        0 0 0 4px rgba(79,124,255,.12),
+        0 10px 25px rgba(79,124,255,.12);
+}
+.PhotoGalleryHeaderSection{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.PhotoGalleryPagination{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+@media (max-width: 1024px) {
+    .PhotoGalleryTable thead {
+        display: none;
+    }
+
+    .PhotoGalleryTable tbody tr {
+        display: block;
+        background: white;
+        border-radius: 16px;
+        padding: 16px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e8edf5;
+        transition: all 0.2s ease;
+    }
+
+    .PhotoGalleryTable tbody tr:active {
+        transform: scale(0.98);
+    }
+
+    .PhotoGalleryHeaderSection {
+        flex-direction: column;
+        gap: 12px;
+        display: flex;
+        margin-bottom: 16px;
+        align-items: center;
+    }
+    
+    .PhotoGalleryTable tbody td {
+        display: block;
+        align-items: center;
+        padding: 8px 0;
+        margin-left: 20px;
+        border: none;
+        border-bottom: 1px solid #f1f5f9;
+        text-align: left;
+        word-break: break-word;
+    }
+
+    .PhotoGalleryTable tbody td:last-child {
+        border-bottom: none;
+        padding-top: 12px;
+        justify-content: flex-start;
+    }
+
+    .PhotoGalleryTable tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #64748b;
+        font-size: 12px;
+        min-width: 80px;
+        flex-shrink: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .PhotoGalleryTable tbody td {
+        background: transparent !important;
+    }
+
+    .PhotoGalleryTable tbody td:last-child {
+        gap: 8px;
+    }
+
+    .PhotoGalleryTable tbody td:last-child .BtnRedactPrompt,
+    .PhotoGalleryTable tbody td:last-child .BtnDeletePrompt {
+        width: 40px;
+        height: 36px;
+    }
+
+    .PhotoGalleryTable {
+        background: transparent;
+        border-radius: 0;
+        overflow: visible;
+    }
+
+
+    .PhotoGallerySortSection {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .PhotoGallerySearchSort {
+        width: 100%;
+        max-width: 100%;
+        height: 44px;
+    }
+
+    .PhotoGallerySortSelect {
+        width: 100%;
+    }
+
+    .PhotoGallerySortSelect select {
+        height: 44px;
+    }
+
+    .TableSection {
+        padding: 12px;
+    }
+
+    .LibraryOfPhotosScreen {
+        padding: 0;
+    }
+}

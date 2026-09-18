@@ -32,6 +32,7 @@ const handleEditPhotoTableClick = (e) => {
         return;
     }
 };
+
 const openDeletePhotoRequirementModal = (id) => {
     ui.DeletePhotoRequirementModal.classList.add('Active');
     const deleteBtn = document.querySelector('.BtnSubmitDeletePhotoRequirement');

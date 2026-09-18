@@ -13,15 +13,16 @@ window.ui = {
     ApplicationsTableBody: document.querySelector('.ApplicationsTable tbody'),
     ApplicationsSearchSortInput: document.getElementById('ApplicationsSearchSortInput'),
 
-
     //Users
-    BtnInviteNewUser: document.querySelector('.BtnAddNewUser'),
-    
+    BtnInviteNewUser: document.querySelector('.BtnInviteNewUser'),
+    InviteNewUserModalSelect: document.querySelector('.InviteNewUserModalSelect'),
+    InviteNewUserEmailInput: document.getElementById('InviteNewUserEmailInput'),
+    InviteNewUserSubmitBtn: document.getElementById('InviteNewUserSubmitBtn'),
+
     //InviteNewUserModal
-    InviteNewUserModal: document.getElementById(''),
+    InviteNewUserModal: document.getElementById('InviteNewUserModal'),
     InviteNewUserModalOverlay: document.querySelector('.InviteNewUserModalOverlay'),
     
-
     // Prompt
     BtnAddNewPrompt: document.querySelector('.BtnAddNewPrompt'),
 

@@ -172,4 +172,8 @@ window.actions = {
         const result = await neuronNetworkService.confirmGeneratedPhotoByAI(model);
         console.log(result); 
     },
+    submitInviteNewUser: async(model) => {
+        const result = await userService.inviteUser(model);
+        console.log(result);
+    },
 };

@@ -128,5 +128,21 @@ window.userService = {
         catch(error) {
             console.error(error);
         }
+    },
+    async inviteUser(inviteusermodel) {
+        try {
+            const response = await customFetch(`${config.API_BASE}/User/InviteUser`,{
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify(inviteusermodel)
+            });
+            const result = await response.json();
+            console.log(result);
+            return result;
+        }
+        catch(error){
+            console.error(error);
+        }
     }
 }

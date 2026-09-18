@@ -8,8 +8,8 @@ const bindInviteUserModalHandlers = () => {
     ui.InviteNewUserModalOverlay?.addEventListener('click', closeInviteUserModal);
 
     // Кнопка подтверждения
-    ui.AddNewPtoSubmitButton?.removeEventListener('click', handleSubmitInviteUser);
-    ui.AddNewPtoSubmitButton?.addEventListener('click', handleSubmitInviteUser);
+    ui.InviteNewUserSubmitBtn?.removeEventListener('click', handleSubmitInviteUser);
+    ui.InviteNewUserSubmitBtn?.addEventListener('click', handleSubmitInviteUser);
 };
 
 const openInviteUserModal = () => {
@@ -20,14 +20,18 @@ const closeInviteUserModal = () => {
 };
 
 const handleSubmitInviteUser = async () => {
-    // try {
-    //     await actions.submitNewPto();
-    //     closeNewPtoModal();
-    //     if (typeof refreshPtoTable === 'function') {
-    //         await refreshPtoTable();
-    //     }
-    // } catch (error) {
-    //     console.error('Ошибка создания ПТО:', error);
-    //     alert('Ошибка при создании ПТО');
-    // }
+    const selectedrole = ui.InviteNewUserModalSelect?.value?.trim();;
+    const enteredemail = ui.InviteNewUserEmailInput?.value?.trim();;
+    const model = {
+            email: enteredemail,
+            role: selectedrole
+        };
+    console.log(model);
+    try {
+        await actions.submitInviteNewUser(model);
+        closeInviteUserModal();
+    } catch (error) {
+        console.error('Произошла ошибка при приглашении пользователя:', error);
+        alert('Произошла ошибка при приглашении пользователя');
+    }
 };
